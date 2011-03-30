@@ -8,3 +8,25 @@
 ;;
 ;; Procedure declarations
 ;;
+
+(define (sqrt-iter guess rad)
+  ; main recursive function
+  (if (accept? guess rad)
+	guess
+	(sqrt-iter (improve guess rad)
+			   rad)))
+
+(define (improve guess rad)
+  ; improves the guess value for the sqrt, according to Newton
+  (/ (+ (/ rad
+		   guess)
+		rad)
+	 2))
+
+(define (accept? guess rad)
+  ; determines if a guess value is good enough
+  (< (/ (abs (- guess 
+				rad))
+		rad)
+	 0.000000001))
+
