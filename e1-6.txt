@@ -13,7 +13,7 @@ version of if:
 			(else else-clase)))
 
 Explain what happens when Alyssa attempts to implement the 
-above method for computing square roots (e1-sqrt-newton.scm).
+above method for computing square roots (e1-7.scm).
 
 
 Answer:

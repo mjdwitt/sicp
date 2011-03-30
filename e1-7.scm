@@ -22,7 +22,10 @@
   (/ (+ a b) 2))
 
 (define (good-enough? guess x)
-  (< (abs (- (square guess) x)) 0.001))
+  (< (/ (abs (- (square guess) 
+				x))
+		x)
+	 0.00001))
 
 (define (square x)
   (* x x))
