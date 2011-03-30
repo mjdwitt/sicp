@@ -9,6 +9,9 @@
 ;; Procedure declarations
 ;;
 
+(define (sqrt-newton radicand)
+  (sqrt-iter 1.0 radicand))
+
 (define (sqrt-iter guess rad)
   ; main recursive function
   (if (accept? guess rad)
@@ -30,3 +33,10 @@
 		rad)
 	 0.000000001))
 
+;;
+;; Test code
+;;
+
+(display (sqrt-newton 2)) (newline)
+(display (sqrt-newton 9)) (newline)
+(display (sqrt-newton 100)) (newline)
