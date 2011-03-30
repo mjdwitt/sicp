@@ -22,6 +22,14 @@
   (/ (+ a b) 2))
 
 (define (good-enough? guess x)
+  ; Text-book example only used abs. diff. to judge accuracy.
+  ; If computing the sqrt of a value below that constant, the value
+  ; itself would be an acceptable answer, which is obviously wrong 
+  ; since the min. acceptable difference in the book was less than 
+  ; one.  Percent error is better, but a context-aware delta value
+  ; would be better since, as the guess approaches the actual value, 
+  ; the difference between the current guess and a new guess will 
+  ; approach zero.
   (< (/ (abs (- (square guess) 
 				x))
 		x)
