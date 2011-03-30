@@ -27,12 +27,12 @@
   ; itself would be an acceptable answer, which is obviously wrong 
   ; since the min. acceptable difference in the book was less than 
   ; one.  Percent error is better, but a context-aware delta value
-  ; would be better since, as the guess approaches the actual value, 
+  ; would be better still.  As the guess approaches the actual value, 
   ; the difference between the current guess and a new guess will 
   ; approach zero.
-  (< (/ (abs (- (square guess) 
-				x))
-		x)
+  (< (/ (abs (- guess
+				(improve guess x)))
+		guess)
 	 0.00001))
 
 (define (square x)
@@ -46,6 +46,6 @@
 ;; Test code
 ;;
 
-(display (sqrt-newton 2)) (newline)
-(display (sqrt-newton 9)) (newline)
-(display (sqrt-newton 100)) (newline)
+(display (sqrt-newton 2)) (newline) (display (square (sqrt-newton 2))) (newline)
+(display (sqrt-newton 9)) (newline) (display (square (sqrt-newton 9))) (newline)
+(display (sqrt-newton 100000000)) (newline) (display (square (sqrt-newton 100000000))) (newline)
