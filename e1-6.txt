@@ -1,0 +1,28 @@
+Michael DeWitt
+30 March 2011
+SICP Exercise 1.6:
+
+Alyssa P. Hacker doesn't see why if needs to be provided as
+a special form.  "Why can't I just define it as an ordinary 
+procedure in terms of cond?" she asks.  Alyssa's friend Eva
+Lu Ator claims this can indeed be done, and she defines a new
+version of if:
+
+	(define (new-if predicate then-clause else-clause)
+	  (cond (predicate then-clause)
+			(else else-clase)))
+
+Explain what happens when Alyssa attempts to implement the 
+above method for computing square roots (e1-sqrt-newton.scm).
+
+
+Answer:
+
+As we discovered in Exercise 1.5, most Scheme and Lisp 
+interpreters--including the gambitc that I am using--evaluate
+code using applicative-order evaluation.  Since applicative-
+order interpreters evaluate parameters before substition into
+their definition's body, using this new-if operator would 
+cause any recursion defined in the form of that which is used 
+in the previous square root example would enter an infinitely
+recursive loop.  
