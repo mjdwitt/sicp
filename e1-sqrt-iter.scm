@@ -9,29 +9,27 @@
 ;; Procedure declarations
 ;;
 
-(define (sqrt-newton radicand)
-  (sqrt-iter 1.0 radicand))
-
-(define (sqrt-iter guess rad)
-  ; main recursive function
-  (if (accept? guess rad)
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
 	guess
-	(sqrt-iter (improve guess rad)
-			   rad)))
+	(sqrt-iter (improve guess x)
+			   x)))
 
-(define (improve guess rad)
-  ; improves the guess value for the sqrt, according to Newton
-  (/ (+ (/ rad
-		   guess)
-		rad)
-	 2))
+(define (improve guess x)
+  (average guess (/ x guess)))
 
-(define (accept? guess rad)
-  ; determines if a guess value is good enough
-  (< (/ (abs (- guess 
-				rad))
-		rad)
-	 0.000000001))
+(define (average a b)
+  (/ (+ a b) 2))
+
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.001))
+
+(define (square x)
+  (* x x))
+
+(define (sqrt-newton x)
+  (sqrt-iter 1.0 x))
+
 
 ;;
 ;; Test code
