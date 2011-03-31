@@ -46,6 +46,7 @@
 ;; Test code
 ;;
 
-(display (sqrt-newton 2)) (newline) (display (square (sqrt-newton 2))) (newline)
-(display (sqrt-newton 9)) (newline) (display (square (sqrt-newton 9))) (newline)
-(display (sqrt-newton 100000000)) (newline) (display (square (sqrt-newton 100000000))) (newline)
+(display (sqrt-newton 2)) (newline) (display (sqrt 2)) (newline)
+(display (sqrt-newton 9)) (newline) (display (sqrt 9)) (newline)
+(display (sqrt-newton 100000000)) (newline) (display (sqrt 100000000)) (newline)
+(display (sqrt-newton .0000001)) (newline) (display (sqrt .0000001)) (newline)
