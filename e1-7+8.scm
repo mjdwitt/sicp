@@ -9,19 +9,26 @@
 ;; Procedure declarations
 ;;
 
+;-- Section 1.1.7 Newtonian square root implementation
+
+(define (sqrt-newton x)
+  (sqrt-iter 1.0 x))
+
 (define (sqrt-iter guess x)
-  (if (good-enough? guess x)
+  (if (good-enough? improve-sqrt guess x)
 	guess
-	(sqrt-iter (improve guess x)
+	(sqrt-iter (improve-sqrt guess x)
 			   x)))
 
-(define (improve guess x)
+(define (improve-sqrt guess x)
   (average guess (/ x guess)))
 
-(define (average a b)
+(define (avg2 a b)
   (/ (+ a b) 2))
 
-(define (good-enough? guess x)
+;-- Exercise 1.7 accuracy improvement
+
+(define (good-enough? improve guess x)
   ; Text-book example only used abs. diff. to judge accuracy.
   ; If computing the sqrt of a value below that constant, the value
   ; itself would be an acceptable answer, which is obviously wrong 
@@ -35,12 +42,16 @@
 		guess)
 	 0.00001))
 
-(define (square x)
-  (* x x))
 
-(define (sqrt-newton x)
-  (sqrt-iter 1.0 x))
+;-- 1.8 Newtonian cube root implementation
 
+(define (cbrt-newton x)
+  (cbrt-iter 1.0 x))
+
+(define (cbrt-iter guess x)
+  (if (good-enough? improve-cbrt guess x)
+	guess
+	(cbrt-iter (improve-cbrt guess x) x)))
 
 ;;
 ;; Test code
