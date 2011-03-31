@@ -1,8 +1,9 @@
 This is a collection of solutions to the exercises in Abelson, Sussman, and 
 Sussman's _Structure and Interpretation of Computer Programs_.  Each file 
 is named according to the exercise for which it is a solution and all follow
-the naming scheme of ex-x.scm where e is for exercise and x-x is the number 
-of the exercise (i.e.: e1-1 means Exercise 1.1). If an exercise uses multiple
-files, the files will be in a folder following the same scheme.
+the naming scheme of cX/eY where c is for chapter, e is for exercise, and X 
+and Y are the chapter numbers, respectively.  (i.e.: c1/e1 is Exercise 1.1.)
+If an exercise uses multiple files, the files will be in a folder following 
+the same scheme.
 
 Any questions can be directed to Michael DeWitt: md@hackfoolery.com.
