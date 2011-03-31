@@ -21,7 +21,7 @@
 			   x)))
 
 (define (improve-sqrt guess x)
-  (average guess (/ x guess)))
+  (avg2 guess (/ x guess)))
 
 (define (avg2 a b)
   (/ (+ a b) 2))
@@ -53,11 +53,25 @@
 	guess
 	(cbrt-iter (improve-cbrt guess x) x)))
 
+(define (improve-cbrt guess x)
+  (/ (+ (/ x
+		   (* guess guess))
+		(* 2 guess))
+	 3))
+
 ;;
 ;; Test code
 ;;
 
+;-- testing square roots
 (display (sqrt-newton 2)) (newline) (display (sqrt 2)) (newline)
 (display (sqrt-newton 9)) (newline) (display (sqrt 9)) (newline)
 (display (sqrt-newton 100000000)) (newline) (display (sqrt 100000000)) (newline)
 (display (sqrt-newton .0000001)) (newline) (display (sqrt .0000001)) (newline)
+
+;-- testing cube roots
+(define (cbrt x)
+  (expt x (/ 3)))
+
+(display (cbrt-newton 8)) (newline) (display (cbrt 8)) (newline)
+(display (cbrt-newton 27)) (newline) (display (cbrt 27)) (newline)
