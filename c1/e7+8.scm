@@ -63,6 +63,10 @@
 ;; Test code
 ;;
 
+(define (test try real x)
+  (display (test x)) (newline)
+  (display (real x)) (newline))
+
 ;-- testing square roots
 (display (sqrt-newton 2)) (newline) (display (sqrt 2)) (newline)
 (display (sqrt-newton 9)) (newline) (display (sqrt 9)) (newline)
@@ -73,5 +77,7 @@
 (define (cbrt x)
   (expt x (/ 3)))
 
+(test cbrt-newton cbrt 8)
+(test cbrt-newton cbrt 27)
 (display (cbrt-newton 8)) (newline) (display (cbrt 8)) (newline)
 (display (cbrt-newton 27)) (newline) (display (cbrt 27)) (newline)
