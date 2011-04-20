@@ -3,5 +3,5 @@
 ;; 20 Aprile 2011
 
 (define (factorial x)
-  (cond ((or (= x 0) (= x 1)) 1)
-		((> x 1) (* x (factorial (- x 1))))))
+  (cond ((= x 0) 1)
+		((> x 0) (* x (factorial (- x 1))))))
