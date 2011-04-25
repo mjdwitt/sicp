@@ -14,7 +14,15 @@
 	   (* 3 (fr (- n 3))))))
 
 (define (fi n)
-  ; computes f iteratively
-  -1) ; implement
+  ; calls the iterative version
+  (fiter 2 1 0 n))
 
-(display (fr 9)) (newline)
+(define (fiter a b c n)
+  ; computes f iteratively
+  (if (= n 0)
+	c
+	(fiter (+ a (* 2 b) (* 3 c)) a b (- n 1))))
+  
+
+(display (fr 6)) (newline)
+(display (fi 6)) (newline)
