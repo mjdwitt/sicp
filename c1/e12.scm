@@ -32,9 +32,8 @@
 (define (P n)
   ; recursively computes the value of the nth term in
   ; Pascal's Triangle
-  (define (row n)
-	; returns the number of the row on which the nth
-	; term resides
+  (define row
+	; the number of the row on which the nth term resides
 	(row-iter 0 1 n))
   (define (row-iter sum i n)
 	; iteratively finds the row
@@ -42,8 +41,17 @@
 	  i
 	  (row-iter (+ sum i) (+ i 1) n)))
   (define (edge? n)
-	(edge?faster (sigma 1 (row n)) n))
+	; identifies terms that are on the edge of the Triangle
+	(edge?faster (sigma 1 row 0) n))
   (define (edge?faster row-max n)
-	(or (= n row-max) (= n (+ row-max 1))))
-  (define (sigma i sum)
-	(
+	(or (= n row-max) (= n (- row-max row -1))))
+  (define (sigma i n sum)
+	; finds partial sums of the series of whole numbers
+	(if (> i n)
+	  sum
+	  (sigma (+ i 1) n (+ sum i))))
+  (if (edge? n)
+	1
+	(+ (P (- n row)) (P (- n row -1)))))
+
+(display (P 13)) (newline)
