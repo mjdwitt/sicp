@@ -32,14 +32,13 @@
 (define (P n)
   ; recursively computes the value of the nth term in
   ; Pascal's Triangle
-  (define row
-	; the number of the row on which the nth term resides
-	(row-iter 0 1 n))
   (define (row-iter sum i n)
 	; iteratively finds the row
 	(if (>= sum n)
 	  i
 	  (row-iter (+ sum i) (+ i 1) n)))
+  ; the number of the row on which the nth term resides
+  (define row (row-iter 0 1 n))
   (define (edge? n)
 	; identifies terms that are on the edge of the Triangle
 	(edge?faster (sigma 1 row 0) n))
