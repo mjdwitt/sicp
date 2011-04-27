@@ -30,23 +30,19 @@
 ;;			plus one.
 
 (define (P n)
+  (define (partial-sum n) (/ (* n (+ n 1)) 2))
+  (define (row n)
+	(define (iter i n)
+	  (if (>= (partial-sum i) n)
+		i
+		(iter (+ i 1) n)))
+	(iter 1 n))
+  (define (edge? n)
+	(or (= n (partial-sum (row n)))
+		(= n (- (partial-sum (row n)) (row n) -1))))
   (if (edge? n)
 	1
 	(+ (P (- n (row n)))
 	   (P (- n (row n) -1)))))
-
-(define (edge? n)
-  (or (= n (partial-sum (row n)))
-	  (= n (- (partial-sum (row n)) (row n) -1))))
-
-(define (partial-sum n)
-  (/ (* n (+ n 1)) 2))
-
-(define (row n)
-  (define (iter i n)
-	(if (>= (partial-sum i) n)
-	  i
-	  (iter (+ i 1) n)))
-  (iter 1 n))
 
 (display (P 100)) (newline)
