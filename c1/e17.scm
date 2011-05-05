@@ -10,8 +10,10 @@
 	(+ n n))
   (define (halve n)
 	(/ n 2))
+  (display a) (display "\t") (display b) (newline)
   (cond ((= b 0) 0)
+		((= b 1) a)
 		((odd? b) (+ a (* a (- b 1))))
 		(else (* (double a) (halve b)))))
 
-(display (* 2 8)) (newline)
+(display (* 2 1024)) (newline)
