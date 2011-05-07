@@ -5,12 +5,12 @@
 (define (fib n)
   (define (even? x)
 	(= (modulo x 2) 0))
-  (define (iter a b n)
+  (define (iter a b p q n)
 	(cond ((= n 0) b)
 		  ((even? n) (iter a
 						   b
-						   ;p'
-						   ;q'
+						   (+ (* p p) (* q q))
+						   (+ (* 2 p q) (* q q))
 						   (/ n 2)))
 		  (else (iter (+ (* b q) (* a q) (* a p))
 					  (+ (* b p) (* a q))
@@ -19,5 +19,9 @@
 					  (- n 1)))))
   (iter 1 0 0 1 n))
 
-(display (fib 9)) (newline)
-(display (fib 100)) (newline)
+(define (print n)
+  (cond ((> n 15) (display "done") (newline))
+	(else (display (fib n)) (newline)
+	      (print (+ n 1)))))
+
+(print 0)
