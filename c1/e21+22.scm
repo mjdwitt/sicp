@@ -23,7 +23,6 @@
   (= n (smallest-divisor n)))
 
 
-
 ;;
 ;; 1.21:
 ;;	Use the smallest-divisor procedure to find the smallest
@@ -42,11 +41,22 @@
 
 ;;
 ;; 1.22:
-;;	blah
+;;	The following procedure tests an integer's primality 
+;;	and records the amount of time spent on the test.
+
+(define (timed-prime-test n)
+  (newline)
+  (display n)
+  (start-prime-test n (runtime)))
+(define (start-prime-test n start-time)
+  (define (report time)
+	(display " *** ") (display time))
+  (if (prime? n)
+	(report (- (runtime) start-time))))
 
 
 
 ;;
 ;; tests
 
-(display (prime? 13)) (newline)
+(timed-prime-test 1999)
