@@ -23,8 +23,7 @@
   (= n (smallest-divisor n)))
 
 
-;;
-;; 1.21:
+(display "1.21:") (newline)
 ;;	Use the smallest-divisor procedure to find the smallest
 ;;	divisor of each of the following numbers: 199, 1999,
 ;;	and 19999.
@@ -34,29 +33,29 @@
   (display (smallest-divisor n))
   (newline))
 
-(display "1.21:") (newline)
 (output-smallest 199)
 (output-smallest 1999)
 (output-smallest 19999)
+(newline)
 
-;;
-;; 1.22:
-;;	The following procedure tests an integer's primality 
-;;	and records the amount of time spent on the test.
 
-(define (timed-prime-test n)
-  (newline)
-  (display n)
-  (start-prime-test n (runtime)))
-(define (start-prime-test n start-time)
-  (define (report time)
-	(display " *** ") (display time))
-  (if (prime? n)
-	(report (- (runtime) start-time))))
+
+(display "1.22:") (newline)
+;;	Forget what the SICP says about (runtime) being a built-in 
+;;	Scheme expressoin; it doesn't exist.  Instead, if you care
+;;	to find the numbers anyways, use the (time expr) procedure,
+;;	where expr is any evaluatable Scheme expression.  i.e.:
+
+(time (prime? 999999999999999999999999999999999999999999999999999999999999999999991))
+
+;;	If you want to output the return value of the expression being 
+;;	provided to time, wrap the whole expression in a display
+;;	expression, like this:
+
+(display (time (prime? 99999999999999999999999999999999999999999999999999999999999999999991)))
 
 
 
 ;;
 ;; tests
 
-(timed-prime-test 1999)
