@@ -36,11 +36,12 @@
 (output-smallest 199)
 (output-smallest 1999)
 (output-smallest 19999)
+
+
+
 (newline)
-
-
-
-(display "1.22:") (newline)
+(newline)
+(newline) (display "1.22:") (newline)
 ;;	If you are using the MIT/GNU Scheme REPL, you can use the
 ;;	(runtime) primitive to time a procedure.  (If, like most
 ;;	people, you are using an alternative implementation, none
@@ -100,9 +101,14 @@
 ;;	and 1,000,000 as values for n in search-for-primes.  Perhaps 
 ;;	larger values of n will work?  Let's try.
 
-(search-for-primes 1000000000000)
-(search-for-primes 10000000000000)
+;(search-for-primes 1000000000000)
+;(search-for-primes 10000000000000)
 
 ;;	Using larger values for n and the (process-time-clock) primitive,
 ;;	it becomes clear that (prime? <val>) has a time complexity of
 ;;	O(sqrt(n).
+
+
+(newline)
+(newline)
+(newline) (display "1.23:") (newline)
