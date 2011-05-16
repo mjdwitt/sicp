@@ -71,7 +71,8 @@
 
 (define (output-next-smallest n)
   (display (next-smallest-prime n)) (newline)
-  (newline))
+  (newline)
+  (next-smallest-prime n))
 
 (define (next-three-smallest n)
   (define (iter n c)
