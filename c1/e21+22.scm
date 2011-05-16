@@ -52,15 +52,35 @@
 ;;	in which you measure the initial runtime and find the 
 ;;	difference when the procedure completes.
 
-(define (timed-prime-test n)
-  (define (report delta-time)
-    (display " *** ")
-    (display delta-time)
-    #t)
+(define (timed-prime? n)
+  ; The timed-prime-test procedure as in SICP 1.22 except with sub-
+  ; processes defined nested inside for clarity.
   (define (start n time1)
+    (define (report delta-time)
+      ; reports runtime and returns true
+      (display " *** ")
+      (display delta-time)
+      #t)
+    ; modified from text to return boolean values indicating the
+    ; primality of n
     (if (prime? n)
-      (report (- (runtime) time1)))
-      #f)
+      (report (- (runtime) time1))
+      #f))
   (newline)
   (display n)
   (start n (runtime)))
+
+;;	Using this procedure, write a procedure for finding the next
+;;	three primes following a given whole number.
+
+(define (search-for-primes n)
+  ; checks the primality of consecutive odd integers following n
+  ; until three primes have been found
+  (define (iter n count)
+    ; loops until three primes have been found (count = 3).  Assumes
+    ; count starts as 0 and n is already odd.
+    (if (< count 3) (iter (+ n 2)
+                          (+ count (if (timed-prime? n) 1 0)))
+                    "done"))
+  (if (= (modulo n 2) 0) (iter (+ n 1) 0)
+                         (iter n 0)))
