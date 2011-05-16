@@ -15,7 +15,8 @@
 	; beginning with start
 	(cond ((> (* start start) n) n)
 		  ((= (modulo n start) 0) start)
-		  (else (iter n (+ start 1)))))
+		  (else (if (> n 2) (iter n (+ start 2))
+                                    (iter n (+ start 1))))))
   (iter n 2))
 
 (define (prime? n)
@@ -112,3 +113,8 @@
 (newline)
 (newline)
 (newline) (display "1.23:") (newline)
+;;	Improve the performance of (prime? <val>) by eliminating 
+;;	(smallest-divisor <val>)'s tests for even divisors > 2.
+;;	Does this halve the time complexity of (prime? <val>)?
+
+;;	
