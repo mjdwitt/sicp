@@ -46,16 +46,48 @@
 ;;	to find the numbers anyways, use the (time expr) procedure,
 ;;	where expr is any evaluatable Scheme expression.  i.e.:
 
-(time (prime? 999999999999999999999999999999999999999999999999999999999999999999991))
+;(time (prime? 999999999999999999999999999999999999999999999999999999999999999999991))
 
 ;;	If you want to output the return value of the expression being 
 ;;	provided to time, wrap the whole expression in a display
 ;;	expression, like this:
 
-(display (time (prime? 99999999999999999999999999999999999999999999999999999999999999999991)))
+;(display (time (prime? 99999999999999999999999999999999999999999999999999999999999999999991)))
 
+;;	Using this, write a procedure that checks the primality of 
+;;	consecutive odd integers in a specified range.  Use your
+;;	procedure to find the three smallest primes larger than 
+;;	1000; larger than 10,000; larger than 100,000; larger than
+;;	1,000,000.
 
+(define (next-smallest-prime n)
+  ; finds the next prime following n
+  (define (iter n)
+    ; iteratively checks for primality, continuing with the next 
+    ; odd integer following n.  Assumes that n is always odd.
+    (if (time (prime? n)) n (iter (+ n 2))))
+  (if (= (modulo n 2) 0) (iter (+ n 1))
+                         (iter n)))
 
-;;
-;; tests
+(define (output-next-smallest n)
+  (display (next-smallest-prime n)) (newline)
+  (newline))
 
+(define (next-three-smallest n)
+  (define (iter n c)
+    (newline)
+    (if (= c 3) (newline) (work (output-next-smallest n) (+ c 1))))
+  (define (work n c)
+    (display "-----------------") (newline)
+    (newline)
+    (iter n c))
+  (display n) (newline)
+  (iter n 0)
+  (display "-----------------") (newline)
+  (newline)
+  (newline))
+
+(next-three-smallest 1000)
+(next-three-smallest 10000)
+(next-three-smallest 100000)
+(next-three-smallest 1000000)
