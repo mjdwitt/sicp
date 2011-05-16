@@ -88,10 +88,10 @@
                          (iter n 0))
   (newline) (display "-----------------------------------"))
 
-(search-for-primes 1000)
-(search-for-primes 10000)
-(search-for-primes 100000)
-(search-for-primes 1000000)
+;(search-for-primes 1000)
+;(search-for-primes 10000)
+;(search-for-primes 100000)
+;(search-for-primes 1000000)
 
 ;;	Given that (runtime) only measures system time in seconds, I 
 ;;	rewrote the above to use the mit-scheme primitive (process-
