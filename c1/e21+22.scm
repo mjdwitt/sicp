@@ -82,5 +82,12 @@
     (if (< count 3) (iter (+ n 2)
                           (+ count (if (timed-prime? n) 1 0)))
                     "done"))
+  (newline) (display n) (display "---------------------------")
   (if (= (modulo n 2) 0) (iter (+ n 1) 0)
-                         (iter n 0)))
+                         (iter n 0))
+  (newline) (display "-----------------------------------"))
+
+(search-for-primes 1000)
+(search-for-primes 10000)
+(search-for-primes 100000)
+(search-for-primes 1000000)
