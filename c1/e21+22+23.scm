@@ -15,8 +15,8 @@
 	; beginning with start
 	(cond ((> (* start start) n) n)
 		  ((= (modulo n start) 0) start)
-		  (else (if (> n 2) (iter n (+ start 2))
-                                    (iter n (+ start 1))))))
+                  ((= start 2) (iter n (+ start 1)))
+		  (else (iter n (+ start 2)))))
   (iter n 2))
 
 (define (prime? n)
@@ -102,7 +102,7 @@
 ;;	and 1,000,000 as values for n in search-for-primes.  Perhaps 
 ;;	larger values of n will work?  Let's try.
 
-;(search-for-primes 1000000000000)
+(search-for-primes 1000000000000)
 ;(search-for-primes 10000000000000)
 
 ;;	Using larger values for n and the (process-time-clock) primitive,
@@ -113,8 +113,3 @@
 (newline)
 (newline)
 (newline) (display "1.23:") (newline)
-;;	Improve the performance of (prime? <val>) by eliminating 
-;;	(smallest-divisor <val>)'s tests for even divisors > 2.
-;;	Does this halve the time complexity of (prime? <val>)?
-
-;;	
