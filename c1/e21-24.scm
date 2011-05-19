@@ -132,6 +132,17 @@
 ;;	O(sqrt(n).
 
 
-(newline)
-(newline)
-(newline) (display "1.23:") (newline)
+
+;; 1.23:
+;;	Modify (smallest-divisor <val>) to skip testing all even values
+;;	above 2.  While this did not quite halve the runtime for 
+;;	(prime? <val>), it came close.  The small difference is most likely
+;;	due to some static (non-repeating) code, either in the present code
+;;	in the Scheme REPL itself.
+
+
+
+;; 1.24:
+;;	Modify the (timed-prime? <val>) procedure to use the Fermat method
+;;	and compare the runtimes for the values tested earlier in 1.22. 
+;;	Does the Fermat method truly run in logarithmic time?
