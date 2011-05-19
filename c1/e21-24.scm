@@ -87,7 +87,7 @@
       #t)
     ; modified from text to return boolean values indicating the
     ; primality of n
-    (if (prime? n)
+    (if (fast-prime? n 4)
       (report (- (process-time-clock) time1))
       #f))
   (newline)
@@ -111,10 +111,10 @@
                          (iter n 0))
   (newline) (display "-----------------------------------"))
 
-;(search-for-primes 1000)
-;(search-for-primes 10000)
-;(search-for-primes 100000)
-;(search-for-primes 1000000)
+(search-for-primes 1000)
+(search-for-primes 10000)
+(search-for-primes 100000)
+(search-for-primes 1000000)
 
 ;;	Given that (runtime) only measures system time in seconds, I 
 ;;	rewrote the above to use the mit-scheme primitive (process-
@@ -124,8 +124,8 @@
 ;;	and 1,000,000 as values for n in search-for-primes.  Perhaps 
 ;;	larger values of n will work?  Let's try.
 
-;(search-for-primes 1000000000000)
-;(search-for-primes 10000000000000)
+(search-for-primes 1000000000000000000000000)
+(search-for-primes 1000000000000000000000000000000000000000000000000)
 
 ;;	Using larger values for n and the (process-time-clock) primitive,
 ;;	it becomes clear that (prime? <val>) has a time complexity of
