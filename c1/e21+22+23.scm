@@ -24,6 +24,28 @@
   (= n (smallest-divisor n)))
 
 
+
+;; Fermat test
+
+(define (expmod b x m)
+  (cond ((= x 0) 1)
+        ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
+                                    m))
+        (else              (modulo (* b (expmod b (- x 1) m))
+                            m))))
+
+(define (fermat-test n)
+  (define (try a)
+    (= (expmod a n n) a))
+  (try (+ 1 (random (- n 1)))))
+
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fermat-test n) (fast-prime? n (- times 1)))
+        (else false)))
+
+
+
 (newline) (display "1.21:") (newline)
 ;;	Use the smallest-divisor procedure to find the smallest
 ;;	divisor of each of the following numbers: 199, 1999,
@@ -102,7 +124,7 @@
 ;;	and 1,000,000 as values for n in search-for-primes.  Perhaps 
 ;;	larger values of n will work?  Let's try.
 
-(search-for-primes 1000000000000)
+;(search-for-primes 1000000000000)
 ;(search-for-primes 10000000000000)
 
 ;;	Using larger values for n and the (process-time-clock) primitive,
