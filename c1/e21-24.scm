@@ -145,4 +145,10 @@
 ;; 1.24:
 ;;	Modify the (timed-prime? <val>) procedure to use the Fermat method
 ;;	and compare the runtimes for the values tested earlier in 1.22. 
-;;	Does the Fermat method truly run in logarithmic time?
+;;	While this certainly makes it faster, even 10^24 and 10^48 are too
+;;	small of values for timed-prime? to return any meaningful results.
+;;	Other solutions for this and the previous timed-prime? exercises
+;;	all seem to obtain meaningful results from runtime, so I am beginning
+;;	to wonder if there is some problem with the installation of 
+;;	mit-scheme that I am running on this system.  I'll have to try it
+;;	on my desktop when I finish this trip.
