@@ -178,10 +178,33 @@
 
 
 
-;; 1.27
+(newline)
+(newline)
+(display "1.27:") (newline)
 ;;	Demonstrate that the Carmichael numbers listed in the text would truly
 ;;	fool the Fermat method of testing primality by writing a procedure
 ;;	to test if a is congruent to a^n (mod n) for every a < n.
 
 (define (carmichael? n)
-  (define (iter (
+  ; tests to see if n is a carmichael number
+  (define (iter a n)
+    ; tests all a < n, assuming original call had a = 1
+    (cond ((= a n) true)
+          ((= (expmod a n n) a) (iter (+ a 1) n))
+          (else false)))
+  (iter 1 n))
+
+(define (out-car? n)
+  ; output function for testing carmichael numbers
+  (display n) (display "\t") (display (carmichael? n)) (newline))
+
+;; tests
+(out-car? 561)
+(out-car? 1105)
+(out-car? 1729)
+(out-car? 2465)
+(out-car? 2821)
+(out-car? 6601)
+
+;;	All of the above Carmichael numbers would indeed fool fermat-prime? as
+;;	written above.
