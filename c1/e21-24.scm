@@ -9,40 +9,40 @@
 ;; iterative test
 
 (define (smallest-divisor n)
-  ; returns the smallest divisor of n
-  (define (iter n start)
-	; iteratiely finds the smallest divisor of n, 
-	; beginning with start
-	(cond ((> (* start start) n) n)
-		  ((= (modulo n start) 0) start)
-                  ((= start 2) (iter n (+ start 1)))
-		  (else (iter n (+ start 2)))))
-  (iter n 2))
+ ; returns the smallest divisor of n
+ (define (iter n start)
+  ; iteratiely finds the smallest divisor of n, 
+  ; beginning with start
+  (cond ((> (* start start) n) n)
+   ((= (modulo n start) 0) start)
+   ((= start 2) (iter n (+ start 1)))
+   (else (iter n (+ start 2)))))
+ (iter n 2))
 
 (define (prime? n)
-  ; returns true if no divisor other than self is found
-  (= n (smallest-divisor n)))
+ ; returns true if no divisor other than self is found
+ (= n (smallest-divisor n)))
 
 
 
 ;; Fermat test
 
 (define (expmod b x m)
-  (cond ((= x 0) 1)
-        ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
-                                    m))
-        (else              (modulo (* b (expmod b (- x 1) m))
-                            m))))
+ (cond ((= x 0) 1)
+  ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
+	  m))
+  (else              (modulo (* b (expmod b (- x 1) m))
+		      m))))
 
 (define (fermat-test n)
-  (define (try a)
-    (= (expmod a n n) a))
-  (try (+ 1 (random (- n 1)))))
+ (define (try a)
+  (= (expmod a n n) a))
+ (try (+ 1 (random (- n 1)))))
 
 (define (fast-prime? n times)
-  (cond ((= times 0) true)
-        ((fermat-test n) (fast-prime? n (- times 1)))
-        (else false)))
+ (cond ((= times 0) true)
+  ((fermat-test n) (fast-prime? n (- times 1)))
+  (else false)))
 
 
 
@@ -52,50 +52,50 @@
 ;;	and 19999.
 
 (define (output-smallest n)
-  (display n) (display "\t")
-  (display (smallest-divisor n))
-  (newline))
+ (display n) (display "\t")
+ (display (smallest-divisor n))
+ (newline))
 
-(output-smallest 199)
-(output-smallest 1999)
+	(output-smallest 199)
+	(output-smallest 1999)
 (output-smallest 19999)
 
 
 
+	(newline)
 (newline)
-(newline)
-(newline) (display "1.22:") (newline)
-;;	If you are using the MIT/GNU Scheme REPL, you can use the
-;;	(runtime) primitive to time a procedure.  (If, like most
-;;	people, you are using an alternative implementation, none
-;;	seem to use this primitive for reasons that I cannot seem
-;;	to figure out.  In that case, you can wrap the expression
-;;	in a (time <expr>) expression, although that is much more
-;;	verbose.)  Using the (runtime) primitive, however, you can
-;;	wrap any expression in a procedure (such as the one below)
-;;	in which you measure the initial runtime and find the 
-;;	difference when the procedure completes.
+	(newline) (display "1.22:") (newline)
+	;;	If you are using the MIT/GNU Scheme REPL, you can use the
+	;;	(runtime) primitive to time a procedure.  (If, like most
+			;;	people, you are using an alternative implementation, none
+			;;	seem to use this primitive for reasons that I cannot seem
+			;;	to figure out.  In that case, you can wrap the expression
+			;;	in a (time <expr>) expression, although that is much more
+			;;	verbose.)  Using the (runtime) primitive, however, you can
+	;;	wrap any expression in a procedure (such as the one below)
+	;;	in which you measure the initial runtime and find the 
+	;;	difference when the procedure completes.
 
 (define (timed-prime? n)
-  ; The timed-prime-test procedure as in SICP 1.22 except with sub-
-  ; processes defined nested inside for clarity.
-  (define (start n time1)
-    (define (report delta-time)
-      ; reports runtime and returns true
-      (display " *** ")
-      (display delta-time)
-      #t)
-    ; modified from text to return boolean values indicating the
-    ; primality of n
-    (if (fast-prime? n 4)
-      (report (- (process-time-clock) time1))
-      #f))
-  (newline)
-  (display n)
-  (start n (process-time-clock)))
+ ; The timed-prime-test procedure as in SICP 1.22 except with sub-
+ ; processes defined nested inside for clarity.
+ (define (start n time1)
+  (define (report delta-time)
+   ; reports runtime and returns true
+   (display " *** ")
+   (display delta-time)
+#t)
+  ; modified from text to return boolean values indicating the
+  ; primality of n
+  (if (fast-prime? n 4)
+   (report (- (process-time-clock) time1))
+#f))
+ (newline)
+ (display n)
+ (start n (process-time-clock)))
 
-;;	Using this procedure, write a procedure for finding the next
-;;	three primes following a given whole number.
+	;;	Using this procedure, write a procedure for finding the next
+	;;	three primes following a given whole number.
 
 (define (search-for-primes n)
   ; checks the primality of consecutive odd integers following n
