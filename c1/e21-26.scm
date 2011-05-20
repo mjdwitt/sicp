@@ -175,3 +175,13 @@
 ;;	square procedure causes expmod to become tree-recursive rather than linear
 ;;	recursive due to the evauation order of most Scheme interpreters.  This
 ;;	drastically impacts the runtime of fast-prime?.
+
+
+
+;; 1.27
+;;	Demonstrate that the Carmichael numbers listed in the text would truly
+;;	fool the Fermat method of testing primality by writing a procedure
+;;	to test if a is congruent to a^n (mod n) for every a < n.
+
+(define (carmichael? n)
+  (define (iter (
