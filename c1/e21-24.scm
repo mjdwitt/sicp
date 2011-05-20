@@ -29,10 +29,10 @@
 
 (define (expmod b x m)
  (cond ((= x 0) 1)
-  ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
-	  m))
-  (else              (modulo (* b (expmod b (- x 1) m))
-		      m))))
+       ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
+                                   m))
+       (else               (modulo (* b (expmod b (- x 1) m))
+	                           m))))
 
 (define (fermat-test n)
  (define (try a)
@@ -152,3 +152,20 @@
 ;;	to wonder if there is some problem with the installation of 
 ;;	mit-scheme that I am running on this system.  I'll have to try it
 ;;	on my desktop when I finish this trip.
+
+
+
+;; 1.25:
+;;	Would the fast-expt procedure from 1.2.4 be usable for replacing
+;;	large amounts of the code in expmod?  Possibly: a^n (mod m) could
+;;	be found by writing
+;;
+;;		(modulo (fast-expt a n) n)
+;;
+;;	While the above code would technically find the same answer, it contains
+;;	some potential pitfalls not present in the version of expmod as coded
+;;	above or in the text, namely, the above code could fail or return 
+;;	incorrect answers for extremely large values of n, depending on the
+;;	being used to evaluate the code.  By including an evaluation of 
+;;	modulo or remainder in each recursive step of expmod, the value being
+;;	passed back up the call stack is kept to some number less than n.
