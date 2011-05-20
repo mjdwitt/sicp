@@ -169,3 +169,9 @@
 ;;	being used to evaluate the code.  By including an evaluation of 
 ;;	modulo or remainder in each recursive step of expmod, the value being
 ;;	passed back up the call stack is kept to some number less than n.
+
+;; 1.26
+;;	Louis Reasoner's use of explicit multiplication in expmod rather than the 
+;;	square procedure causes expmod to become tree-recursive rather than linear
+;;	recursive due to the evauation order of most Scheme interpreters.  This
+;;	drastically impacts the runtime of fast-prime?.
