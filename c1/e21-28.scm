@@ -208,3 +208,13 @@
 
 ;;	All of the above Carmichael numbers would indeed fool fermat-prime? as
 ;;	written above.
+
+
+
+(newline)
+(newline)
+(display "1.28") (newline)
+;;	The Miller-Rabin test is an unfoolable variation of the Fermat method
+;;	of testing for primality.  It states that, for any prime number n and
+;;	any whole number a such that a < n, a^(n-1) is congruent to 1 modulo n.
+;;	
