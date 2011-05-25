@@ -217,4 +217,11 @@
 ;;	The Miller-Rabin test is an unfoolable variation of the Fermat method
 ;;	of testing for primality.  It states that, for any prime number n and
 ;;	any whole number a such that a < n, a^(n-1) is congruent to 1 modulo n.
-;;	
+;;	Below is an implementation of this method.
+
+(define (mrprime? n)
+  (define a (+ 1 (random (- n 1))))
+  (= (mrexpmod a (- n 1) n) 1))
+
+(define (mrexpmod b x m)
+  (cond ((= 
