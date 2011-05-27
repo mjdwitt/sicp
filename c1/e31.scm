@@ -1,7 +1,7 @@
 ;; Michael DeWitt
 ;; 26 May 2011
 ;; SICP Exercise 1.31:
-;;	Write an abstraction similar to sum which multiplies a
+;;	A.) Write an abstraction similar to sum which multiplies a
 ;;	range of terms in a sequence.
 
 (define (product term a next b)
@@ -13,11 +13,21 @@
 ;;	the formula that 
 ;;		pi/4 = (2/3)(4/3)(4/5)(6/5)(6/7)(8/7)...
 
-(define (approximate-pi n)
+(define (approximate-pi n f)
   ; Numerically approximates pi using the above formula, repeating
   ; the multiplication to the nth term.
   (define (term x)
 	(cond ((= x 2) (/ 2.0 3.0))
 		  (else (* (/ x (- x 1)) (/ x (+ x 1))))))
   (define (next x) (+ x 2))
-  (* 4 (product term 2 next (+ n 1))))
+  (* 4 (f term 2 next (+ n 1))))
+
+;;	B.) Since the above implementation of product is recursive,
+;;	write a version that is iterative.
+
+(define (iter-product term a next b)
+  (define (iter a result)
+	(if (> a b)
+	  result
+	  (iter (next a) (* (term a) result))))
+  (iter a 1))
