@@ -20,7 +20,7 @@
 	(cond ((= x 2) (/ 2.0 3.0))
 		  (else (* (/ x (- x 1)) (/ x (+ x 1))))))
   (define (next x) (+ x 2))
-  (* 4 (f term 2 next (+ n 1))))
+  (* 4 (f term 2 next (/ n 2))))
 
 ;;	B.) Since the above implementation of product is recursive,
 ;;	write a version that is iterative.
@@ -31,3 +31,18 @@
 	  result
 	  (iter (next a) (* (term a) result))))
   (iter a 1))
+
+;; 
+;; some side-by-side testing of the two procedures using approximate-pi
+
+(define (print-pi n)
+  ; prints the output of approximate-pi when using both the 
+  ; iterative and recursive methods
+  (newline)
+  (display n) (display "\t")
+  (display (approximate-pi n product)) (display "\t")
+  (display (approximate-pi n iter-product)))
+
+(print-pi 100)
+(print-pi 1000)
+(print-pi 10000)
