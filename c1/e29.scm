@@ -1,6 +1,6 @@
 ;; Michael DeWitt
 ;; 26 May 2011
-;; SICP Section 1.3.1: Procedures as Arguments
+;; SICP Exercise 1.29
 
 ;; 
 ;; example code:
@@ -27,9 +27,6 @@
   (* dx (sum f (+ a (/ dx 2.0)) add-dx b)))
 
 
-
-;; 
-;; exercises:
 
 (newline)
 (display "1.29:") (newline)
