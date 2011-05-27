@@ -14,11 +14,11 @@
 ;;		Demonstrate this function by implementing versions of 
 ;;		product and sum that use the above in their definitions.
 
-(define (sum term a next b)
-  (accumulate + 0 term a next b))
+(define (sum f term a next b)
+  (f + 0 term a next b))
 
-(define (product term a next b)
-  (accumulate * 1 term a next b))
+(define (product f term a next b)
+  (f * 1 term a next b))
 
 ;;		And some testing for both sum and product:
 
@@ -26,8 +26,10 @@
 
 (define (inc x) (+ x 1))
 
-(display (sum id 1 inc 10)) (newline)
-(display (product id 1 inc 5)) (newline)
+(display (sum accumulate id 1 inc 10)) (display "\t")
+(display (sum iter-accumulate id 1 inc 10)) (newline)
+(display (product accumulate id 1 inc 5)) (display "\t")
+(display (product iter-accumulate id 1 inc 5)) (newline)
 
 ;;	B.)	Since the above implementation of accumulate is a
 ;;		recursive process, create an iterative version.
