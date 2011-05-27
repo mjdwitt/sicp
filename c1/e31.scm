@@ -16,6 +16,8 @@
 (define (approximate-pi n)
   ; Numerically approximates pi using the above formula, repeating
   ; the multiplication to the nth term.
-  (define (term x) x)
-  (define (next x) x)
+  (define (term x)
+	(cond ((= x 2) (/ 2.0 3.0))
+		  (else (* (/ x (- x 1)) (/ x (+ x 1))))))
+  (define (next x) (+ x 1))
   (* 4 (product term 2 next (+ n 1))))
