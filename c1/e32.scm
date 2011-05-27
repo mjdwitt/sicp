@@ -28,3 +28,14 @@
 
 (display (sum id 1 inc 10)) (newline)
 (display (product id 1 inc 5)) (newline)
+
+;;	B.)	Since the above implementation of accumulate is a
+;;		recursive process, create an iterative version.
+
+(define (iter-accumulate combiner null-value term a next b)
+  (define (iter a result)
+	(if (> a b)
+	  result
+	  (iter (next a) (combiner (term a) result))))
+  (iter a null-value))
+
