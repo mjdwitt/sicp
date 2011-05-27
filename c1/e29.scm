@@ -58,7 +58,7 @@
 	(cond ((or (= x a) (= x b)) (f x))	; the first and last terms
 		  ((even-term? x) (* 4 (f x)))	; even terms all get multiplied by 4
 		  (else (* 2 (f x)))))			; odd terms get multiplied by 2
-  (* (* 1.0 h) (sum term a next b)))
+  (* (/ h 3.0) (sum term a next b)))
 
 ;;	Use the above implementation to integrate cube between 
 ;;	0 and 1 with n set at 100 and 1000.
@@ -68,14 +68,10 @@
   ; simpsons-rule.
   (newline)
   (display n) (display "\t")
-  (display (simpsons-rule f a b n)) (display "\t")
-  (display (integral f a b (/ 1.0 n))) (display "\t")
-  (display (/ (simpsons-rule f a b n) 3)))
+  (display (simpsons-rule f a b n)))
 
 (test-sr cube 0 1 100)
 (test-sr cube 0 1 1000)
-(test-sr cube 0 3 1000)
-(test-sr cube 0 9 1000)
 (newline)
 
 
