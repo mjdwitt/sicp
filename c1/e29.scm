@@ -20,6 +20,12 @@
 	(+ (term a)
 	   (sum term (next a) next b))))
 
+(define (integral f a b dx)
+  ; Finds the integral of f from a to b using dx as the 
+  ; width of each sub-area.
+  (define (add-dx x) (+ x dx))
+  (* dx (sum f (+ a (/ dx 2.0)) add-dx b)))
+
 
 
 ;; 
@@ -61,10 +67,15 @@
   ; a procedure for outputing information returned by
   ; simpsons-rule.
   (newline)
-  (display n) (display "\t") (display (simpsons-rule f a b n)))
+  (display n) (display "\t")
+  (display (simpsons-rule f a b n)) (display "\t")
+  (display (integral f a b (/ 1.0 n))) (display "\t")
+  (display (/ (simpsons-rule f a b n) 3)))
 
 (test-sr cube 0 1 100)
 (test-sr cube 0 1 1000)
+(test-sr cube 0 3 1000)
+(test-sr cube 0 9 1000)
 (newline)
 
 
