@@ -19,5 +19,5 @@
   (define (term x)
 	(cond ((= x 2) (/ 2.0 3.0))
 		  (else (* (/ x (- x 1)) (/ x (+ x 1))))))
-  (define (next x) (+ x 1))
+  (define (next x) (+ x 2))
   (* 4 (product term 2 next (+ n 1))))
