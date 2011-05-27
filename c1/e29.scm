@@ -35,9 +35,9 @@
   ; f is a mathematical function in terms of a single 
   ; variable.  The procedure is applied over the range
   ; of [a, b] in n steps. (n is assumed to be even.)
-  (define h (/ (- b a) n))		; defines the width of each section being summed
-  (define (next x) (+ x h ))	; finds the next value of x for the next term of simpson's rule
-  (define (term x)				; maps x to the correct form for its term in simpson's rule
+  (define h (/ (- b a) n))	; defines the width of each section being summed
+  (define (next x) (+ x h ))		; finds the next value of x for the next term of simpson's rule
+  (define (term x)					; maps x to the correct form for its term in simpson's rule
 	(define (even-term? x)
 	  ; Determines if the value of x represents an even
 	  ; term in the series used by simpson's rule.  This
@@ -52,7 +52,7 @@
 	(cond ((or (= x a) (= x b)) (f x))	; the first and last terms
 		  ((even-term? x) (* 4 (f x)))	; even terms all get multiplied by 4
 		  (else (* 2 (f x)))))			; odd terms get multiplied by 2
-  (* h (sum term a next b)))
+  (* (* 1.0 h) (sum term a next b)))
 
 ;;	Use the above implementation to integrate cube between 
 ;;	0 and 1 with n set at 100 and 1000.
