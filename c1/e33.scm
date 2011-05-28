@@ -46,4 +46,6 @@
 
 ;;	and B.)	the product of all positive integers i < n such that GCD(i,n) = 1.
 
-
+(define (product-relative-primes n)
+  (define (use? x) (= (gcd x n) 1))
+  (filtered-accumulate use? * 1 id 2 inc n))
