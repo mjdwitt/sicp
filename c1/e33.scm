@@ -33,10 +33,17 @@
 (define (test f z n)
   (filtered-accumulate use? f z id 1 inc n))
 
-(display (test + 0 10)) (newline)
-(display (test * 1 5)) (newline)
+;(display (test + 0 10)) (newline)
+;(display (test * 1 5)) (newline)
 
 ;;	Show how to express the following using the above code:
-;;	A.)	the sum of the squares of the prime numbers in ther interval a to b,
+;;	A.)	the sum of the squares of the prime numbers in the interval a to b,
+
+(define (sum-primes a b)
+  ; uses  primality tests from e21-28.scm to filter over the interval
+  (define (use? x) (fast-prime? x 10))
+  (filtered-accumulate use? + 0 id a inc b))
 
 ;;	and B.)	the product of all positive integers i < n such that GCD(i,n) = 1.
+
+
