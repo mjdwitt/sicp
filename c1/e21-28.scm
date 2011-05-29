@@ -84,12 +84,12 @@
    ; reports runtime and returns true
    (display " *** ")
    (display delta-time)
-#t)
+   #t)
   ; modified from text to return boolean values indicating the
   ; primality of n
   (if (fast-prime? n 4)
    (report (- (process-time-clock) time1))
-#f))
+   #f))
  (newline)
  (display n)
  (start n (process-time-clock)))
