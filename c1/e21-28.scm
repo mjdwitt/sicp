@@ -220,16 +220,18 @@
 ;;	Below is an implementation of this method.
 
 (define (mrprime? n)
+  (define (mrexpmod b x m)
+    (define (test p q)
+  	  (if (and (not (or (= p 1)
+					    (= p (- q 1))))
+			   (= (expmod p 2 q) 1))
+	    0
+	    p))
+    (cond ((= x 0) 1)
+		  ((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
+		  (else (modulo (* b (mrexpmod b (- x 1) m)) m))))
   (define a (+ 1 (random (- n 1))))
   (= (mrexpmod a (- n 1) n) 1))
 
-(define (mrexpmod b x m)
-  (define (test p q)
-	(if (and (not (or (= p 1)
-					  (= p (- q 1))))
-			 (= (expmod p 2 q) 1))
-	  0
-	  p))
-  (cond ((= x 0) 1)
-		((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
-		(else (* b (mrexpmod b (- x 1) m)))))
+
+

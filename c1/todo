@@ -1,8 +1,7 @@
 Things that need done before releasing completed--mostly correct--work for section 1.3.1:
 
 1.	Fix logical errors in e21-28.scm's mrprime? (Ex. 1.28)
-		- after some testing of prime? and mrprime? side-by-side, 
- 			it seems that mrprime? is failing inconsistantly.
-			Here I was under the impression that it was supposed
-			to be consistent.
+		- implement looped testing for mrprime? (see fast-prime?)
 2.	Pretty up some code (find specific examples of ugliness to fix here)
+		- all over e21-28.scm
+		- 1.3.1 is surprisingly neat
