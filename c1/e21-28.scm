@@ -8,38 +8,36 @@
 
 ;; iterative test
 
-(define (smallest-divisor n)
- ; returns the smallest divisor of n
- (define (iter n start)
-  ; iteratiely finds the smallest divisor of n, 
-  ; beginning with start
-  (cond ((> (* start start) n) n)
-   ((= (modulo n start) 0) start)
-   ((= start 2) (iter n (+ start 1)))
-   (else (iter n (+ start 2)))))
- (iter n 2))
-
 (define (prime? n)
  ; returns true if no divisor other than self is found
+ (define (smallest-divisor n)
+  ; returns the smallest divisor of n
+  (define (iter n start)
+   ; iteratiely finds the smallest divisor of n, 
+   ; beginning with start
+   (cond ((> (* start start) n) n)
+    ((= (modulo n start) 0) start)
+    ((= start 2) (iter n (+ start 1)))
+    (else (iter n (+ start 2)))))
+ (iter n 2))
+
  (= n (smallest-divisor n)))
 
 
 
 ;; Fermat test
 
-(define (expmod b x m)
- (cond ((= x 0) 1)
-       ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
-                                   m))
-       (else               (modulo (* b (expmod b (- x 1) m))
-	                           m))))
-
-(define (fermat-test n)
- (define (try a)
-  (= (expmod a n n) a))
- (try (+ 1 (random (- n 1)))))
-
 (define (fast-prime? n times)
+ (define (fermat-test n)
+  (define (expmod b x m)
+   (cond ((= x 0) 1)
+         ((= (modulo x 2) 0) (modulo (square (expmod b (/ x 2) m))
+                                     m))
+         (else               (modulo (* b (expmod b (- x 1) m))
+                                     m))))
+  (define (try a)
+   (= (expmod a n n) a))
+  (try (+ 1 (random (- n 1)))))
  (cond ((= times 0) true)
   ((fermat-test n) (fast-prime? n (- times 1)))
   (else false)))
@@ -62,19 +60,19 @@
 
 
 
-	(newline)
 (newline)
-	(newline) (display "1.22:") (newline)
-	;;	If you are using the MIT/GNU Scheme REPL, you can use the
-	;;	(runtime) primitive to time a procedure.  (If, like most
-			;;	people, you are using an alternative implementation, none
-			;;	seem to use this primitive for reasons that I cannot seem
-			;;	to figure out.  In that case, you can wrap the expression
-			;;	in a (time <expr>) expression, although that is much more
-			;;	verbose.)  Using the (runtime) primitive, however, you can
-	;;	wrap any expression in a procedure (such as the one below)
-	;;	in which you measure the initial runtime and find the 
-	;;	difference when the procedure completes.
+(newline)
+(newline) (display "1.22:") (newline)
+;;	If you are using the MIT/GNU Scheme REPL, you can use the
+;;	(runtime) primitive to time a procedure.  (If, like most
+		;;	people, you are using an alternative implementation, none
+		;;	seem to use this primitive for reasons that I cannot seem
+		;;	to figure out.  In that case, you can wrap the expression
+		;;	in a (time <expr>) expression, although that is much more
+		;;	verbose.)  Using the (runtime) primitive, however, you can
+;;	wrap any expression in a procedure (such as the one below)
+;;	in which you measure the initial runtime and find the 
+;;	difference when the procedure completes.
 
 (define (timed-prime? n)
  ; The timed-prime-test procedure as in SICP 1.22 except with sub-
@@ -84,12 +82,12 @@
    ; reports runtime and returns true
    (display " *** ")
    (display delta-time)
-#t)
+   #t)
   ; modified from text to return boolean values indicating the
   ; primality of n
   (if (fast-prime? n 4)
    (report (- (process-time-clock) time1))
-#f))
+   #f))
  (newline)
  (display n)
  (start n (process-time-clock)))
@@ -220,16 +218,18 @@
 ;;	Below is an implementation of this method.
 
 (define (mrprime? n)
+  (define (mrexpmod b x m)
+    (define (test p q)
+  	  (if (and (not (or (= p 1)
+					    (= p (- q 1))))
+			   (= (expmod p 2 q) 1))
+	    0
+	    p))
+    (cond ((= x 0) 1)
+		  ((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
+		  (else (modulo (* b (mrexpmod b (- x 1) m)) m))))
   (define a (+ 1 (random (- n 1))))
   (= (mrexpmod a (- n 1) n) 1))
 
-(define (mrexpmod b x m)
-  (define (test p q)
-	(if (and (not (or (= p 1)
-					  (= p (- q 1))))
-			 (= (expmod p 2 q) 1))
-	  0
-	  p))
-  (cond ((= x 0) 1)
-		((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
-		(else (* b (mrexpmod b (- x 1) m)))))
+
+
