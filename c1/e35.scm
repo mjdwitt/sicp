@@ -24,4 +24,22 @@
 
 
 
+(newline)
+(newline) (display "1.35:") (newline)
+;;	Find the golden ratio using the above fixed-point procedure 
+;;	on the transformation of x -> 1 + 1/x
+
+; the actual formula for the golden ratio, as defined in 1.2.2
+(define golden-ratio (/ (+ 1 (sqrt 5)) 2))
+
+; and a fixed-point approximation
+(define golden-ratio-fp
+  (fixed-point (lambda (x) (+ 1 (/ 1 x)))
+			   1.0))
+
+(display "Actual ratio:\t") (display golden-ratio) (newline)
+(display "Approximation:\t") (display golden-ratio-fp) (newline)
+(display "Difference:\t") (display (abs (- golden-ratio golden-ratio-fp))) (newline)
+
+
 
