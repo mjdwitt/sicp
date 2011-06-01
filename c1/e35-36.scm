@@ -16,6 +16,7 @@
     (< (abs ( - a b)) tolerance))
   (define (iter x)
     ;  iteratively finds the solution for x
+	(display x) (newline) ; some tracking output for 1.36
     (define next (f x))
     (if (close-enough? x next)
       next
@@ -41,5 +42,25 @@
 (display "Approximation:\t") (display golden-ratio-fp) (newline)
 (display "Difference:\t") (display (abs (- golden-ratio golden-ratio-fp))) (newline)
 
+
+(newline)
+(newline) (display "1.36:") (newline)
+;;	Modify fixed-point to print the current value of x
+;;	on each step.  Using this modified procedure, solve for
+;;	x in 
+;;
+;;			x = log(1000)/log(x)
+;;	
+;;	Compare how average damping affeects the number of steps.
+
+(display "With damping:") (newline)
+(define x1 
+  (fixed-point (lambda (x) (/ (+ x (/ (log 1000) (log x))) 2))
+			   2.0))
+
+(display "And without:") (newline)
+(define x2
+  (fixed-point (lambda (x) (/ (log 1000) (log x)))
+			   2.0))
 
 
