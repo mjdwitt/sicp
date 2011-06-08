@@ -70,6 +70,7 @@
   (define (d-seq n)
 	; returns the nth term in the denominator sequence
 	; for Euler's expansion.  N must be an integer.
+	(display n) (newline)
 	(if (= (modulo n 3) 2)
 	  (* (+ (/ n
 			   3)
