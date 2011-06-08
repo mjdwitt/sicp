@@ -67,6 +67,15 @@
 
 (define (approx-e k)
   ; Approximates e to the kth term of Euler's expansion.
+  (define (d-seq n)
+	; returns the nth term in the denominator sequence
+	; for Euler's expansion.  N must be an integer.
+	(if (= (modulo n 3) 2)
+	  (* (+ (/ n
+			   3)
+			1)
+		 2)
+	  1.0))
   (+ 2 (cont-frac (lambda (x) 1.0)
 				  d-seq
 				  k))
