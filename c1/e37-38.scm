@@ -78,4 +78,4 @@
 	  1.0))
   (+ 2 (cont-frac (lambda (x) 1.0)
 				  d-seq
-				  k))
+				  k)))
