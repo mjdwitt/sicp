@@ -1,6 +1,10 @@
 ;; Michael DeWitt
 ;; 07 July 2011
-;; SICP Exercise 1.37:
+;; SICP Exercises 1.37-38
+
+
+
+(newline) (display "1.37:") (newline)
 ;;	A.)	Write a function for computing continued fractions 
 ;;		truncated to the kth term.
 
@@ -19,12 +23,9 @@
 				(iter (- i 1) (/ (N i) (+ (D i) result)))))
   (iter (- k 1) (/ (N k) (D k))))
 
-
-
 ;;		Now, use this procedure to compute 1/phi, where phi is
 ;;		the golden ratio--(1 + sqrt 5)/2.
 
-(newline)
 (display "1/phi:\t")
 (display (cont-frac (lambda (x) 1.0)
 					(lambda (x) 1.0)
@@ -55,3 +56,17 @@
 					 (lambda (x) 1.0)
 					 11)) (display "\t")
 (display (/ 2 (+ 1 (sqrt 5)))) (newline)
+
+
+
+(newline)
+(newline) (display "1.38:") (newline)
+;;	Write a procedure for approximating e using Euler's 
+;;	expansion via one of the above continued fraction
+;;	functions.
+
+(define (approx-e k)
+  ; Approximates e to the kth term of Euler's expansion.
+  (+ 2 (cont-frac (lambda (x) 1.0)
+				  d-seq
+				  k))
