@@ -68,11 +68,9 @@
 (define (approx-e k)
   ; Aprroximates e according to Euler's Expansion to 
   ; the kth term.
-  (define (N i) 1)
+  (define (N i) 1.0)
   (define (D i)
 	(if (= (modulo i 3) 2)
-	  (* 2
-		 (+ (/ i 3)
-			2))
-	  1))
-  (cont-frac N D k))
+	  (floor (- (* 2 (+ (/ i 3) 2)) 1))
+	  1.0))
+  (+ 2 (cont-frac N D k)))
