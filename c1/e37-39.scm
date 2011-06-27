@@ -86,7 +86,7 @@
   ; Computes tangent using Lambert's approximation to the 
   ; kth term.
   (define (N i)
-	(if (= i 1) (- x) (- (square x))))
+	(if (= i 1) x (- (square x))))
   (define (D i)
 	(- (* 2.0 i) 1))
   (cont-frac N D k))
