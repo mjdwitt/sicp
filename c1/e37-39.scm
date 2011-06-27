@@ -74,3 +74,11 @@
 	  (* 2 (+ (floor (/ i 3)) 1))
 	  1))
   (+ 2 (cont-frac N D k)))
+
+
+
+(newline)
+(newline) (display "1.39") (newline)
+;;	Write a continued fraction representation of the tangent
+;;	function using J. H. Lambert's approximation.
+
