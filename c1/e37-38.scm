@@ -19,9 +19,9 @@
 	; the current term with i and returning result. 
 	; Assumes that i starts positive and result starts 
 	; as the value of the kth term.
-	(if (< i 1) result
+	(if (= i 0) result
 				(iter (- i 1) (/ (N i) (+ (D i) result)))))
-  (iter (- k 1) (/ (N k) (D k))))
+  (iter k 0))
 
 ;;		Now, use this procedure to compute 1/phi, where phi is
 ;;		the golden ratio--(1 + sqrt 5)/2.
@@ -65,18 +65,3 @@
 ;;	expansion via one of the above continued fraction
 ;;	functions.
 
-(define (approx-e k)
-  ; Approximates e to the kth term of Euler's expansion.
-  (define (d-seq n)
-	; returns the nth term in the denominator sequence
-	; for Euler's expansion.  N must be an integer.
-	(display n) (newline)
-	(if (= (modulo n 3) 2)
-	  (* (+ (/ n
-			   3)
-			1)
-		 2)
-	  1.0))
-  (+ 2 (cont-frac (lambda (x) 1.0)
-				  d-seq
-				  k)))
