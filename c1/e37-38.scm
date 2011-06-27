@@ -65,3 +65,14 @@
 ;;	expansion via one of the above continued fraction
 ;;	functions.
 
+(define (approx-e k)
+  ; Aprroximates e according to Euler's Expansion to 
+  ; the kth term.
+  (define (N i) 1)
+  (define (D i)
+	(if (= (modulo i 3) 2)
+	  (* 2
+		 (+ (/ i 3)
+			2))
+	  1))
+  (cont-frac N D k))
