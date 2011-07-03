@@ -198,3 +198,28 @@
 
 (display "The polynomial x^3 + x^2 + 2x + 3 has a zero at x = ")
 (display (newtons-method (cubic 1 2 3) 1)) (newline)
+
+
+
+(newline)
+(newline) (display "1.41:") (newline)
+;;	Define a procedure double that takes a procedure of one 
+;;	argument as an argument and returns a procedure that 
+;;	applies the original procedure twice.
+
+(define (double f)
+  (lambda (x)
+	(f (f x))))
+
+;;	What does (((double (double double)) inc) 5) return?
+
+(define (inc x)
+  ; have to define inc really quick here...
+  (+ x 1))
+
+(display "(((double (double double)) inc) 5) returns ")
+(display (((double (double double)) inc) 5))
+(display ".") (newline)
+
+
+
