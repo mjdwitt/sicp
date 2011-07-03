@@ -5,6 +5,9 @@
 ;; 
 ;; example code
 
+(define (average a b)
+  (/ (+ a b) 2))
+
 (define tolerance 0.00001)  ; default tolerance to use with fixed-point's close-enough?
 
 (define (fixed-point f x)
