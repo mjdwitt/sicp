@@ -242,3 +242,16 @@
   (if (= n 1)
 	f
 	(compose f (repeated f (- n 1)))))
+
+
+
+(newline)
+(newline) (display "1.43:") (newline)
+;;	Write a procedure which returns a smoothed version of any 
+;;	single-parameter function passed in to it.
+
+(define (smooth f)
+  (define dx .00001)
+  (lambda (x)
+	(average (f (- x dx))
+			 (f (+ x dx)))))
