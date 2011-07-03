@@ -16,7 +16,7 @@
     (< (abs ( - a b)) tolerance))
   (define (iter x)
     ;  iteratively finds the solution for x
-	(display x) (newline) ; some tracking output for 1.36
+	;(display x) (newline) ; some tracking output for 1.36
     (define next (f x))
     (if (close-enough? x next)
       next
@@ -53,15 +53,17 @@
 ;;	
 ;;	Compare how average damping affeects the number of steps.
 
-(display "With damping:") (newline)
+(display "With damping:\t")
 (define x1 
   (fixed-point (lambda (x) (/ (+ x (/ (log 1000) (log x))) 2))
 			   2.0))
+(display x1) (newline)
 
-(display "And without:") (newline)
+(display "And without:\t")
 (define x2
   (fixed-point (lambda (x) (/ (log 1000) (log x)))
 			   2.0))
+(display x2) (newline)
 
 
 
@@ -142,6 +144,8 @@
 	  1))
   (+ 2 (cont-frac N D k)))
 
+(display "e:\t") (display (approx-e 50)) (newline)
+
 
 
 (newline)
@@ -178,5 +182,17 @@
 	(lambda (x)
 	  (- x (/ (g x) ((deriv g) x)))))
   (fixed-point (newton-transform g) guess))
+
+(define (cubic a b c)
+  ; returns a cubic polynomial function in terms of x in
+  ; the form of
+  ;		x^3 + ax^2 + bx + c
+  (lambda (x)
+	(+ (expt x 3)
+	   (* a (expt x 2))
+	   (* b x)
+	   c)))
+
+
 
 
