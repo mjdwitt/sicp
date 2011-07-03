@@ -162,9 +162,12 @@
 	(- (* 2.0 i) 1))
   (cont-frac N D k))
 
+(display "tan(42) = ")
+(display (tan-cf 42 100)) (newline)
 
 
-;; Exercise 1.40:
+(newline)
+(newline) (display "1.40:") (newline)
 ;;	Define a procedure cubic that can be used together with 
 ;;	newton's method to approximate zeros of the cubic
 ;;		x^3 + ax^2 + bx + c
@@ -193,6 +196,5 @@
 	   (* b x)
 	   c)))
 
-
-
-
+(display "The polynomial x^3 + x^2 + 2x + 3 has a zero at x = ")
+(display (newtons-method (cubic 1 2 3) 1)) (newline)
