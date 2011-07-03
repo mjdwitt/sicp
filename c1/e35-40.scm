@@ -258,3 +258,10 @@
   (lambda (x)
 	(average (f (- x dx))
 			 (f (+ x dx)))))
+
+;;	Demonstrate how to generate the n-fold smoothed function of
+;;	any function using smooth and repeated.
+
+(display "tan(42):\t\t\t") (display (tan 42)) (newline)
+(display "smoothed tan(42):\t\t") (display ((smooth tan) 42)) (newline)
+(display "42-fold smoothed tan(42:\t") (display ((repeated (smooth tan) 42) 42)) (newline)
