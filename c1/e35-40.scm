@@ -223,3 +223,13 @@
 
 
 
+;; Exercise 1.42:
+;;	Write a procedure which takes two functions as parameters
+;;	and returns a composition of the two.
+
+(define (compose f g)
+  (lambda (x)
+	(f (g x))))
+
+
+
