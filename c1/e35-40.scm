@@ -265,3 +265,15 @@
 (display "tan(42):\t\t\t") (display (tan 42)) (newline)
 (display "smoothed tan(42):\t\t") (display ((smooth tan) 42)) (newline)
 (display "42-fold smoothed tan(42:\t") (display ((repeated (smooth tan) 42) 42)) (newline)
+
+
+
+(newline)
+(newline) (display "1.45:") (newline)
+;;	begin phone-written code
+
+(define (nrt x p)
+  (fixed-point ((repeated average-damp
+						   (floor (/ (log p) (log 2))))
+				 (lambda (y) (/ x (expt y (- p 1)))))
+				1.0))
