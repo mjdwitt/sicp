@@ -8,6 +8,11 @@
 (define (average a b)
   (/ (+ a b) 2))
 
+(define (average-damp f)
+  (lambda (x)
+	(average x
+			 (f x))))
+
 (define tolerance 0.00001)  ; default tolerance to use with fixed-point's close-enough?
 
 (define (fixed-point f x)
