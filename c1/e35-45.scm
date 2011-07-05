@@ -275,9 +275,11 @@
 
 (newline)
 (newline) (display "1.45:") (newline)
-;;	begin phone-written code
+;;	Implement a simple procedure for computing nth roots using
+;;	fixed-point, average-damp, and the repeated procedure from
+;;	exercise 1.43.
 
-(define (nrt x p)
+(define (n-rt x p)
   (fixed-point ((repeated average-damp
 						   (floor (/ (log p) (log 2))))
 				 (lambda (y) (/ x (expt y (- p 1)))))
