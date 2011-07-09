@@ -10,8 +10,8 @@
 
 (define (average-damp f)
   (lambda (x)
-	(average x
-			 (f x))))
+    (average x
+             (f x))))
 
 (define tolerance 0.00001)  ; default tolerance to use with fixed-point's close-enough?
 
@@ -24,7 +24,7 @@
     (< (abs ( - a b)) tolerance))
   (define (iter x)
     ;  iteratively finds the solution for x
-	;(display x) (newline) ; some tracking output for 1.36
+    ;(display x) (newline) ; some tracking output for 1.36
     (define next (f x))
     (if (close-enough? x next)
       next
@@ -44,7 +44,7 @@
 ; and a fixed-point approximation
 (define golden-ratio-fp
   (fixed-point (lambda (x) (+ 1 (/ 1 x)))
-			   1.0))
+               1.0))
 
 (display "Actual ratio:\t") (display golden-ratio) (newline)
 (display "Approximation:\t") (display golden-ratio-fp) (newline)
@@ -64,13 +64,13 @@
 (display "With damping:\t")
 (define x1 
   (fixed-point (lambda (x) (/ (+ x (/ (log 1000) (log x))) 2))
-			   2.0))
+               2.0))
 (display x1) (newline)
 
 (display "And without:\t")
 (define x2
   (fixed-point (lambda (x) (/ (log 1000) (log x)))
-			   2.0))
+               2.0))
 (display x2) (newline)
 
 
@@ -92,12 +92,12 @@
   ; argument for each successive iteration will simply
   ; be the sequence of whole numbers.
   (define (iter i result)
-	; iterates backwards from the (k-1)th term, tracking 
-	; the current term with i and returning result. 
-	; Assumes that i starts positive and result starts 
-	; as the value of the kth term.
-	(if (= i 0) result
-				(iter (- i 1) (/ (N i) (+ (D i) result)))))
+    ; iterates backwards from the (k-1)th term, tracking 
+    ; the current term with i and returning result. 
+    ; Assumes that i starts positive and result starts 
+    ; as the value of the kth term.
+    (if (= i 0) result
+                (iter (- i 1) (/ (N i) (+ (D i) result)))))
   (iter k 0))
 
 ;;		Now, use this procedure to compute 1/phi, where phi is
@@ -105,8 +105,8 @@
 
 (display "1/phi:\t")
 (display (cont-frac (lambda (x) 1.0)
-					(lambda (x) 1.0)
-					11)) (display "\t")
+                    (lambda (x) 1.0)
+                    11)) (display "\t")
 (display (/ 2 (+ 1 (sqrt 5)))) (newline)
 
 ;;		Computing the inverse of the golden ration as an 11th-
@@ -122,16 +122,16 @@
 ;;		The recursive version:
 (define (rcont-frac N D k)
   (define (recurse i)
-	(if (> i k)
-	  0
-	  (/ (N i) (+ (D i) (recurse (+ i 1))))))
+    (if (> i k)
+      0
+      (/ (N i) (+ (D i) (recurse (+ i 1))))))
   (recurse 1))
 
 ;;		And the test:
 (display "\t")
 (display (rcont-frac (lambda (x) 1.0)
-					 (lambda (x) 1.0)
-					 11)) (display "\t")
+                     (lambda (x) 1.0)
+                     11)) (display "\t")
 (display (/ 2 (+ 1 (sqrt 5)))) (newline)
 
 
@@ -147,9 +147,9 @@
   ; the kth term.
   (define (N i) 1.0)
   (define (D i)
-	(if (= (modulo i 3) 2)
-	  (* 2 (+ (floor (/ i 3)) 1))
-	  1))
+    (if (= (modulo i 3) 2)
+      (* 2 (+ (floor (/ i 3)) 1))
+      1))
   (+ 2 (cont-frac N D k)))
 
 (display "e:\t") (display (approx-e 50)) (newline)
@@ -165,9 +165,9 @@
   ; Computes tangent using Lambert's approximation to the 
   ; kth term.
   (define (N i)
-	(if (= i 1) x (- (square x))))
+    (if (= i 1) x (- (square x))))
   (define (D i)
-	(- (* 2.0 i) 1))
+    (- (* 2.0 i) 1))
   (cont-frac N D k))
 
 (display "tan(42) = ")
@@ -184,25 +184,25 @@
   ; code for Newton's method from the text
   (define dx .00001)
   (define (deriv g)
-	; approximates a derivative according to the hardcoded
-	; dx as set above
-	(lambda (x)
-	  (/ (- (g (+ x dx)) (g x))
-		 dx)))
+    ; approximates a derivative according to the hardcoded
+    ; dx as set above
+    (lambda (x)
+      (/ (- (g (+ x dx)) (g x))
+         dx)))
   (define (newton-transform g)
-	(lambda (x)
-	  (- x (/ (g x) ((deriv g) x)))))
+    (lambda (x)
+      (- x (/ (g x) ((deriv g) x)))))
   (fixed-point (newton-transform g) guess))
 
 (define (cubic a b c)
   ; returns a cubic polynomial function in terms of x in
   ; the form of
-  ;		x^3 + ax^2 + bx + c
+  ;        x^3 + ax^2 + bx + c
   (lambda (x)
-	(+ (expt x 3)
-	   (* a (expt x 2))
-	   (* b x)
-	   c)))
+    (+ (expt x 3)
+       (* a (expt x 2))
+       (* b x)
+       c)))
 
 (display "The polynomial x^3 + x^2 + 2x + 3 has a zero at x = ")
 (display (newtons-method (cubic 1 2 3) 1)) (newline)
@@ -217,7 +217,7 @@
 
 (define (double f)
   (lambda (x)
-	(f (f x))))
+    (f (f x))))
 
 ;;	What does (((double (double double)) inc) 5) return?
 
@@ -237,7 +237,7 @@
 
 (define (compose f g)
   (lambda (x)
-	(f (g x))))
+    (f (g x))))
 
 
 
@@ -248,8 +248,8 @@
 
 (define (repeated f n)
   (if (= n 1)
-	f
-	(compose f (repeated f (- n 1)))))
+    f
+    (compose f (repeated f (- n 1)))))
 
 
 
@@ -261,8 +261,8 @@
 (define (smooth f)
   (define dx .00001)
   (lambda (x)
-	(average (f (- x dx))
-			 (f (+ x dx)))))
+    (average (f (- x dx))
+             (f (+ x dx)))))
 
 ;;	Demonstrate how to generate the n-fold smoothed function of
 ;;	any function using smooth and repeated.
@@ -281,6 +281,6 @@
 
 (define (n-rt x p)
   (fixed-point ((repeated average-damp
-						   (floor (/ (log p) (log 2))))
-				 (lambda (y) (/ x (expt y (- p 1)))))
-				1.0))
+                           (floor (/ (log p) (log 2))))
+                 (lambda (y) (/ x (expt y (- p 1)))))
+                1.0))

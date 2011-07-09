@@ -20,14 +20,14 @@
 (define (min-of-3 a b c)
   ; returns the smallest of three values
   (cond ((and (< a b) (< a c)) a)
-		((= a b) a)
-		((and (< b a) (< b c)) b)
-		(else c)))
+        ((= a b) a)
+        ((and (< b a) (< b c)) b)
+        (else c)))
 
 (define (sumsqr-two-large a b c)
   ; returns the sum of the squares of the two larger values
   (- (sumsqr a b c)
-	 (sqr (min-of-3 a b c))))
+     (sqr (min-of-3 a b c))))
 
 ;;
 ;; Test code

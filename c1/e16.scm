@@ -6,11 +6,11 @@
 
 (define (^ b n)
   (define (odd? n)
-	(= (modulo n 2) 1))
+    (= (modulo n 2) 1))
   (define (iter a b n)
-	(cond ((= n 0) a)
-		  ((odd? n) (iter (* a b) b (- n 1)))
-		  (else (iter a (* b b) (/ n 2)))))
+    (cond ((= n 0) a)
+          ((odd? n) (iter (* a b) b (- n 1)))
+          (else (iter a (* b b) (/ n 2)))))
   (iter 1 b n))
 
 (display (^ 2 100)) (newline)

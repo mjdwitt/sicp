@@ -8,22 +8,22 @@
 
 (define (filtered-accumulate include? combiner null-value term a next b)
   (cond ((> a b) null-value)
-		((include? (term a)) (combiner (term a) 
-									   (filtered-accumulate include?
-															combiner
-															null-value
-															term
-															(next a)
-															next
-															b)))
-		(else (combiner null-value
-						(filtered-accumulate include?
-											 combiner
-											 null-value
-											 term
-											 (next a)
-											 next
-											 b)))))
+        ((include? (term a)) (combiner (term a) 
+                                       (filtered-accumulate include?
+                                                            combiner
+                                                            null-value
+                                                            term
+                                                            (next a)
+                                                            next
+                                                            b)))
+        (else (combiner null-value
+                        (filtered-accumulate include?
+                                             combiner
+                                             null-value
+                                             term
+                                             (next a)
+                                             next
+                                             b)))))
 
 ;; some quick tests for filtered-accumulate:
 

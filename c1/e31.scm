@@ -6,8 +6,8 @@
 
 (define (product term a next b)
   (if (> a b)
-	1
-	(* (term a) (product term (next a) next b))))
+    1
+    (* (term a) (product term (next a) next b))))
 
 ;;	Use this procedure to compute approximations to pi given
 ;;	the formula that 
@@ -17,8 +17,8 @@
   ; Numerically approximates pi using the above formula, repeating
   ; the multiplication to the nth term.
   (define (term x)
-	(cond ((= x 2) (/ 2.0 3.0))
-		  (else (* (/ x (- x 1)) (/ x (+ x 1))))))
+    (cond ((= x 2) (/ 2.0 3.0))
+          (else (* (/ x (- x 1)) (/ x (+ x 1))))))
   (define (next x) (+ x 2))
   (* 4 (f term 2 next (/ n 2))))
 
@@ -27,9 +27,9 @@
 
 (define (iter-product term a next b)
   (define (iter a result)
-	(if (> a b)
-	  result
-	  (iter (next a) (* (term a) result))))
+    (if (> a b)
+      result
+      (iter (next a) (* (term a) result))))
   (iter a 1))
 
 ;; 

@@ -8,10 +8,10 @@
 (define (fr n)
   ; computes f recursively
   (if (< n 3)
-	n
-	(+ (fr (- n 1))
-	   (* 2 (fr (- n 2)))
-	   (* 3 (fr (- n 3))))))
+    n
+    (+ (fr (- n 1))
+       (* 2 (fr (- n 2)))
+       (* 3 (fr (- n 3))))))
 
 (define (fi n)
   ; calls the iterative version
@@ -20,8 +20,8 @@
 (define (fiter a b c n)
   ; computes f iteratively
   (if (= n 0)
-	c
-	(fiter (+ a (* 2 b) (* 3 c)) a b (- n 1))))
+    c
+    (fiter (+ a (* 2 b) (* 3 c)) a b (- n 1))))
   
 
 (display (fr 6)) (newline)

@@ -7,13 +7,13 @@
 
 (define (* a b)
   (define (double n)
-	(+ n n))
+    (+ n n))
   (define (halve n)
-	(/ n 2))
+    (/ n 2))
   (display a) (display "\t") (display b) (newline)
   (cond ((= b 0) 0)
-		((= b 1) a)
-		((odd? b) (+ a (* a (- b 1))))
-		(else (* (double a) (halve b)))))
+        ((= b 1) a)
+        ((odd? b) (+ a (* a (- b 1))))
+        (else (* (double a) (halve b)))))
 
 (display (* 2 1024)) (newline)
