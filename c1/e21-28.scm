@@ -54,8 +54,8 @@
  (display (smallest-divisor n))
  (newline))
 
-	(output-smallest 199)
-	(output-smallest 1999)
+    (output-smallest 199)
+    (output-smallest 1999)
 (output-smallest 19999)
 
 
@@ -65,11 +65,11 @@
 (newline) (display "1.22:") (newline)
 ;;	If you are using the MIT/GNU Scheme REPL, you can use the
 ;;	(runtime) primitive to time a procedure.  (If, like most
-		;;	people, you are using an alternative implementation, none
-		;;	seem to use this primitive for reasons that I cannot seem
-		;;	to figure out.  In that case, you can wrap the expression
-		;;	in a (time <expr>) expression, although that is much more
-		;;	verbose.)  Using the (runtime) primitive, however, you can
+        ;;    people, you are using an alternative implementation, none
+        ;;    seem to use this primitive for reasons that I cannot seem
+        ;;    to figure out.  In that case, you can wrap the expression
+        ;;    in a (time <expr>) expression, although that is much more
+        ;;    verbose.)  Using the (runtime) primitive, however, you can
 ;;	wrap any expression in a procedure (such as the one below)
 ;;	in which you measure the initial runtime and find the 
 ;;	difference when the procedure completes.
@@ -92,8 +92,8 @@
  (display n)
  (start n (process-time-clock)))
 
-	;;	Using this procedure, write a procedure for finding the next
-	;;	three primes following a given whole number.
+    ;;    Using this procedure, write a procedure for finding the next
+    ;;    three primes following a given whole number.
 
 (define (search-for-primes n)
   ; checks the primality of consecutive odd integers following n
@@ -220,14 +220,14 @@
 (define (mrprime? n)
   (define (mrexpmod b x m)
     (define (test p q)
-  	  (if (and (not (or (= p 1)
-					    (= p (- q 1))))
-			   (= (expmod p 2 q) 1))
-	    0
-	    p))
+        (if (and (not (or (= p 1)
+                        (= p (- q 1))))
+               (= (expmod p 2 q) 1))
+        0
+        p))
     (cond ((= x 0) 1)
-		  ((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
-		  (else (modulo (* b (mrexpmod b (- x 1) m)) m))))
+          ((= (modulo x 2) 0) (modulo (square (test (mrexpmod b (/ x 2) m) m)) m))
+          (else (modulo (* b (mrexpmod b (- x 1) m)) m))))
   (define a (+ 1 (random (- n 1))))
   (= (mrexpmod a (- n 1) n) 1))
 

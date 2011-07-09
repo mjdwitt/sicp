@@ -7,15 +7,15 @@
 
 (define (* a b)
   (define (double n)
-	(+ n n))
+    (+ n n))
   (define (halve n)
-	(/ n 2))
+    (/ n 2))
   (define (iter a b c)
-	(display a) (display "\t") (display b) (display "\t") (display c) (newline)
-	(cond ((= b 0) 0)
-		  ((= b 1) (+ a c))
-		  ((odd? b) (iter a (- b 1) (+ a c)))
-		  (else (iter (double a) (halve b) c))))
+    (display a) (display "\t") (display b) (display "\t") (display c) (newline)
+    (cond ((= b 0) 0)
+          ((= b 1) (+ a c))
+          ((odd? b) (iter a (- b 1) (+ a c)))
+          (else (iter (double a) (halve b) c))))
   (iter a b 0))
 
 

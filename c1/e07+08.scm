@@ -16,9 +16,9 @@
 
 (define (sqrt-iter guess x)
   (if (good-enough? improve-sqrt guess x)
-	guess
-	(sqrt-iter (improve-sqrt guess x)
-			   x)))
+    guess
+    (sqrt-iter (improve-sqrt guess x)
+               x)))
 
 (define (improve-sqrt guess x)
   (avg2 guess (/ x guess)))
@@ -38,9 +38,9 @@
   ; the difference between the current guess and a new guess will 
   ; approach zero.
   (< (/ (abs (- guess
-				(improve guess x)))
-		guess)
-	 0.00001))
+                (improve guess x)))
+        guess)
+     0.00001))
 
 
 ;-- 1.8 Newtonian cube root implementation
@@ -50,14 +50,14 @@
 
 (define (cbrt-iter guess x)
   (if (good-enough? improve-cbrt guess x)
-	guess
-	(cbrt-iter (improve-cbrt guess x) x)))
+    guess
+    (cbrt-iter (improve-cbrt guess x) x)))
 
 (define (improve-cbrt guess x)
   (/ (+ (/ x
-		   (* guess guess))
-		(* 2 guess))
-	 3))
+           (* guess guess))
+        (* 2 guess))
+     3))
 
 ;;
 ;; Test code
