@@ -64,18 +64,7 @@
 ;;	Implement a representation for rectangles in a plane.
 
 (define (make-rect line width)
-  ; Defines a rectangle in terms of one of its edges and the
-  ; distance between the given edge and its parallel edge.
-  ; Given that line and scalar, we can compute each of the
-  ; four vertexes using the functions for lines and points
-  ; defined above 
-  (define A (start-segment line))
-  (define B (end-segment line))
-  (define C (make-C B))
-  (define D (make-D A B C))
-
-  ; (and some of our own defined in block here, 
-  ; for the sake of neatness.)
+  ; Some procedures of our own for the sake of neatness.
   (define (make-C B)
     (let ((skew (slope-line line))	;
 	  (xb (x-point B))		; some useful shortcuts for some constants
@@ -107,6 +96,17 @@
 		       (- xd xc))		;
 		    yc))			;
       (make-point xd yd))))	; the actual construction which is returned to define vertex D
+
+
+  ; make-rect defines a rectangle in terms of one of its edges
+  ; and the distance between the given edge and its parallel edge.
+  ; Given that line and scalar, we can compute each of the
+  ; four vertexes using the functions for lines and points
+  ; defined above:
+  (define A (start-segment line))
+  (define B (end-segment line))
+  (define C (make-C B))
+  (define D (make-D A B C))
 
   ; The rectangle is stored as a collection of four points--
   ; or more acurately, a pair of two pairs of points:
