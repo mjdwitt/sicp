@@ -45,7 +45,7 @@
     (make-point (/ (+ x1 x2) 2)
 		(/ (+ y1 y2) 2))))
 
-(define (lenght-line line) ; *
+(define (length-line line) ; *
   (distance (start-segment line)
 	    (end-segment line)))
 
