@@ -64,49 +64,43 @@
 ;;	Implement a representation for rectangles in a plane.
 
 (define (make-rect line width)
-  ; Some procedures of our own for the sake of neatness.
-  (define (make-C B)
-    (let ((skew (slope-line line))	;
-	  (xb (x-point B))		; some useful shortcuts for some constants
-	  (yb (y-point B)))		;
-      (define xc (+ (/ (* (sqrt (+ (expt skew -2) 1))	;
-			  width)			; separating the calculations
-		       (+ (expt skew -2)		; of the cooridinates from the 
-			  1))				; actual construction of 
-		    xb))				; vertex C makes for (somewhat)
-      (define yc (+ (* (expt skew -1)			; more readable code
-		       (- xc xb))			;
-		    yb))				;
-      (make-point xc yc)))	; the actual construction which is returned to define vertex C
-
-  (define (make-D A C)
-    (let ((skew (slope-line line))	;
-	  (xa (x-point A))		;
-	  (ya (y-point A))		; some useful shortcuts for some constants
-	  (xc (x-point C))		;
-	  (yc (y-point C)))		;
-      (define xd (/ (+ (* (expt skew 2)		;
-			  xc)			;
-		       (- (* skew yc))		; separating the calculations of the
-		       (* skew ya)		; coordinates from the actual construction
-		       (- xa))			; of vertex D makes for (somewhat) more
-		    (- (expt skew 2)		; readable code
-		       1)))			;
-      (define yd (+ (* skew			;
-		       (- xd xc))		;
-		    yc))			;
-      (make-point xd yd))))	; the actual construction which is returned to define vertex D
-
-
   ; make-rect defines a rectangle in terms of one of its edges
-  ; and the distance between the given edge and its parallel edge.
-  ; Given that line and scalar, we can compute each of the
-  ; four vertexes using the functions for lines and points
-  ; defined above:
+  ; and the distance between the given edge and the parallel edge.
+  ; Given that line and scalar, we can compute each of the four
+  ; vertexes using the functions for lines and points defined above.
+  (define skew (slope-line line)) ; the rectangle's skew, relative to the x-axis
+  ; The induvidual components of the start and endpoint of the given edge:
+  (define xa (x-point (start-segment line)))
+  (define ya (y-point (start-segment line)))
+  (define xb (x-point (start-segment line)))
+  (define yb (y-point (start-segment line)))
+  ; The individual components of the rectangle's remaning 
+  ; two vertices, defined in terms of the two which are given:
+  (define xc (+ (/ (* (sqrt (+ (expt skew -2)
+			       1))
+		      width)
+		   (+ (expt skew -2)
+		      1))
+		xb))
+  (define yc (+ (* (expt skew -1)
+		   (- xc xb))
+		yb))
+  (define xd (/ (+ (* (expt skew 2)
+		      xc)
+		   (- (* skew yc))
+		   (* skew ya)
+		   (- xa))
+		(- (expt skew 2)
+		   1)))
+  (define yd (+ (* skew
+		   (- xd xc))
+		yc))
+
+  ; The definitions of the four vertices:
   (define A (start-segment line))
   (define B (end-segment line))
-  (define C (make-C B))
-  (define D (make-D A B C))
+  (define C (make-point xc yc))
+  (define D (make-point xd yd))
 
   ; The rectangle is stored as a collection of four points--
   ; or more acurately, a pair of two pairs of points:
