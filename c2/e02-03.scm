@@ -73,6 +73,7 @@
   (define B (end-segment line))
   (define C (make-C B))
   (define D (make-D A B C))
+
   ; (and some of our own defined in block here, 
   ; for the sake of neatness.)
   (define (make-C B)
@@ -88,6 +89,7 @@
 		       (- xc xb))			;
 		    yb))				;
       (make-point xc yc)))	; the actual construction which is returned to define vertex C
+
   (define (make-D A C)
     (let ((skew (slope-line line))	;
 	  (xa (x-point A))		;
@@ -129,11 +131,15 @@
 ; The vertexes can each be accessed by the same function 
 ; according to their corresponding letters as drawn above:
 (define (rect-vertex rect letter)
+  (cond ((string-ci=? letter "A") (car (car rect)))
+	((string-ci=? letter "B") (cdr (car rect)))
+	((string-ci=? letter "C") (car (cdr rect)))
+	((string-ci=? letter "D") (cdr (cdr rect)))))
 
 ; The edges can each be accessed by the same function 
 ; according to their numbers, where side 1 is the AB segment,
 ; 2 is BC, 3 is CD, and 4 is DA.
-(define (rect-edge rect num)
+(define (rect-edge rect num) 42)
 
 ;;	In terms of your constructors and selectors, create 
 ;;	procedures that compute the perimeter and the area of
