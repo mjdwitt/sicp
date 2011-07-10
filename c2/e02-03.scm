@@ -68,6 +68,8 @@
   ; and the distance between the given edge and the parallel edge.
   ; Given that line and scalar, we can compute each of the four
   ; vertexes using the functions for lines and points defined above.
+  ; Note that rectangles created by make-rect MUST have some skew
+  ; relative to the underlying cartesian grid.
   (define skew (slope-line line)) ; the rectangle's skew, relative to the x-axis
   ; The induvidual components of the start and endpoint of the given edge:
   (define xa (x-point (start-segment line)))
