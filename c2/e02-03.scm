@@ -9,7 +9,7 @@
 ;;	the midpoint of a given line.
 
 (define (make-point x y)
-  (cons (* 1.0 x) (* 1.0 y))	; The coordinates are multiplied
+  (cons (* 1.0 x) (* 1.0 y)))	; The coordinates are multiplied
   				; here to make all math using points
 				; much simpler later.
 (define (x-point point)
