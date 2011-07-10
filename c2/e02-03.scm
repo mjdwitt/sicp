@@ -104,10 +104,8 @@
   (define C (make-point xc yc))
   (define D (make-point xd yd))
 
-  ; The rectangle is stored as a collection of four points--
-  ; or more acurately, a pair of two pairs of points:
-  ; ((A, B), (C, D))
-  (cons (cons A B) (cons C D)))
+  ; The rectangle is stored as a list of four points
+  (list A B C D))
 
 ; Given the above definition of a rectangle, the below accessors
 ; all assume that the rectangle is modeled similarly to the
@@ -127,10 +125,10 @@
 ; The vertexes can each be accessed by the same function 
 ; according to their corresponding letters as drawn above:
 (define (rect-vertex rect letter)
-  (cond ((string-ci=? letter "A") (car (car rect)))
-	((string-ci=? letter "B") (cdr (car rect)))
-	((string-ci=? letter "C") (car (cdr rect)))
-	((string-ci=? letter "D") (cdr (cdr rect)))))
+  (cond ((string-ci=? letter "A") (first rect))
+	((string-ci=? letter "B") (second rect))
+	((string-ci=? letter "C") (third rect))
+	((string-ci=? letter "D") (fourth rect))))
 
 ; The edges can each be accessed by the same function 
 ; according to their numbers, where side 1 is the AB segment,
