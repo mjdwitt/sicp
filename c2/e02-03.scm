@@ -50,10 +50,10 @@
 	    (end-segment line)))
 
 (define (slope-line line) ; *
-  (/ (- (x-point (end-segment line))
-	(x-point (start-segment line)))
-     (- (y-point (end-segment line))
-	(y-point (start-segment line)))))
+  (/ (- (y-point (end-segment line))
+	(y-point (start-segment line)))
+     (- (x-point (end-segment line))
+	(x-point (start-segment line)))))
 
 ; * denotes functions not truly needed for 2.2, but come in 
 ; handy later.
