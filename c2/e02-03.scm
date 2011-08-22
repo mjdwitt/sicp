@@ -132,7 +132,13 @@
 ; The edges can each be accessed by the same function 
 ; according to their numbers, where side 1 is the AB segment,
 ; 2 is BC, 3 is CD, and 4 is DA.
-(define (rect-edge rect num) 42)
+(define (rect-edge rect num)
+  (case num
+    ((1) (make-line (rect-vertex rect "A") (rect-vertex rect "B")))
+    ((2) (make-line (rect-vertex rect "B") (rect-vertex rect "C")))
+    ((3) (make-line (rect-vertex rect "C") (rect-vertex rect "D")))
+    ((4) (make-line (rect-vertex rect "D") (rect-vertex rect "A")))
+    (else (display "Invalid num; must be [1-4]."))))
 
 ;;	In terms of your constructors and selectors, create 
 ;;	procedures that compute the perimeter and the area of
