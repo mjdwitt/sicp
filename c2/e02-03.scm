@@ -150,3 +150,7 @@
       (iter (+ sum (length-line (rect-edge rect i))) (+ i 1))
       sum))
   (iter 0 1))
+
+(define (rect-area rect)
+  (* (length-line (rect-edge rect 1))
+     (length-line (rect-edge rect 2))))
