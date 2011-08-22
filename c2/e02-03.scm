@@ -67,6 +67,11 @@
       (/ 1 (- s)) ; s is normal
       0))) ; s is undefined (infinite)
 
+(define (flip-line line)
+  ; returns a line whose endpoints are in the opposite order
+  (make-line (end-segment line)
+	     (start-segment line)))
+
 ; * denotes functions not truly needed for 2.2, but come in 
 ; handy later.
 
