@@ -80,7 +80,31 @@
 ;; Exercise 2.3:
 ;;	Implement a representation for rectangles in a plane.
 
+(define (third-vector leg distance)
+  ; Given a leg of a right triangle and the distance from the 
+  ; orthagonal vertext to the third vertex, this procedure returns
+  ; the value of the unknown third vertex of the triangle.
+  (let* ((p (perpendicular-slope-line leg))
+	 (xb (x-point (end-segment leg)))
+	 (yb (y-point (end-segment leg)))
+	 (x (if p ((if (< 0 distance) - +) xb
+					   (sqrt (/ (square distance)
+						    (+ 1 (square p)))))
+		  xb))
+	 (y (if p (+ (* p (- x xb)) yb)
+		  (+ yb distance))))
+    (make-point x y)))
 
+(define (make-rect-av edge width)
+  ; Given one edge and the width between the given edge and
+  ; the one parallel, this procedure returns a rectangle 
+  ; as a list of four points, where the given edge is the
+  ; segment defined by the first two points.
+  (let ((A (start-segment edge))
+	(B (end-segment edge))
+	(C (third-vertex edge width))
+	(D (third-vertex (flip-line edge) width)))
+    (list A B C D)))
 
 ; Given the above definition of a rectangle, the below accessors
 ; all assume that the rectangle is modeled similarly to the
