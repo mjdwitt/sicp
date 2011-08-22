@@ -144,4 +144,9 @@
 ;;	procedures that compute the perimeter and the area of
 ;;	a given rectangle.
 
-
+(define (rect-perimeter rect)
+  (define (iter sum i)
+    (if (< i 5)
+      (iter (+ sum (length-line (rect-edge rect i))) (+ i 1))
+      sum))
+  (iter 0 1))
