@@ -78,7 +78,7 @@
 
 
 ;; Exercise 2.3:
-;;	Implement a representation for rectangles in a plane.
+;;	Implement two representations for rectangles in a plane.
 
 (define (third-vertex leg distance)
   ; Given a leg of a right triangle and the distance from the 
@@ -106,7 +106,33 @@
 	(D (third-vertex (flip-line edge) width)))
     (list A B C D)))
 
-; Given the above definition of a rectangle, the below accessors
+(define (make-rect-al edge width)
+  ; Given one edge and the width between the given edge and
+  ; the one parallel, this procedure returns a rectangle as
+  ; a list of four edges, where the given edge is the first
+  ; in the list.
+  (let ((P (start-segment edge))
+	(Q (end-segment edge))
+	(R (third-vertex edge width))
+	(S (third-vertex (flip-line edge) width)))
+    (let ((a edge)
+	  (b (make-line Q R))
+	  (c (make-line R S))
+	  (d (make-line S P)))
+      (list a b c d))))
+
+; The following two procedures each test (unsafely) the identity
+; of their respective types of rectangle objects.
+
+(define (rect-av? rect)
+  ; returns true if rect is a list of vertexes
+  (number? (car (car rect))))
+
+(define (rect-al? rect)
+  ; returns true if rect is a list of pairs
+  (pair? (car (car rect))))
+
+; Given the above definitions of a rectangle, the below accessors
 ; all assume that the rectangle is modeled similarly to the
 ; following:
 ;
