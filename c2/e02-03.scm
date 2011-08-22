@@ -50,10 +50,22 @@
 	    (end-segment line)))
 
 (define (slope-line line) ; *
-  (/ (- (y-point (end-segment line))
-	(y-point (start-segment line)))
-     (- (x-point (end-segment line))
-	(x-point (start-segment line)))))
+  ; returns the slope as a ratio for all normal slopes and
+  ; #f for undefined (infinite) slopes
+  (if (= (x-point (start-segment line))
+	 (x-point (end-segment line)))
+    #f
+    (/ (- (y-point (end-segment line))
+	  (y-point (start-segment line)))
+       (- (x-point (end-segment line))
+	  (x-point (start-segment line))))))
+
+(define (perpendicular-slope-line line) ; *
+  ; returns the slope of any line perpendicular to the given line
+  (let ((s (slope-line line)))
+    (if s
+      (/ 1 (- s)) ; s is normal
+      0))) ; s is undefined (infinite)
 
 ; * denotes functions not truly needed for 2.2, but come in 
 ; handy later.
