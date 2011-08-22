@@ -63,49 +63,7 @@
 ;; Exercise 2.3:
 ;;	Implement a representation for rectangles in a plane.
 
-(define (make-rect line width)
-  ; make-rect defines a rectangle in terms of one of its edges
-  ; and the distance between the given edge and the parallel edge.
-  ; Given that line and scalar, we can compute each of the four
-  ; vertexes using the functions for lines and points defined above.
-  ; Note that rectangles created by make-rect MUST have some skew
-  ; relative to the underlying cartesian grid.
-  (define skew (slope-line line)) ; the rectangle's skew, relative to the x-axis
-  ; The induvidual components of the start and endpoint of the given edge:
-  (define xa (x-point (start-segment line)))
-  (define ya (y-point (start-segment line)))
-  (define xb (x-point (start-segment line)))
-  (define yb (y-point (start-segment line)))
-  ; The individual components of the rectangle's remaning 
-  ; two vertices, defined in terms of the two which are given:
-  (define xc (+ (/ (* (sqrt (+ (expt skew -2)
-			       1))
-		      width)
-		   (+ (expt skew -2)
-		      1))
-		xb))
-  (define yc (+ (* (expt skew -1)
-		   (- xc xb))
-		yb))
-  (define xd (/ (+ (* (expt skew 2)
-		      xc)
-		   (- (* skew yc))
-		   (* skew ya)
-		   (- xa))
-		(- (expt skew 2)
-		   1)))
-  (define yd (+ (* skew
-		   (- xd xc))
-		yc))
 
-  ; The definitions of the four vertices:
-  (define A (start-segment line))
-  (define B (end-segment line))
-  (define C (make-point xc yc))
-  (define D (make-point xd yd))
-
-  ; The rectangle is stored as a list of four points
-  (list A B C D))
 
 ; Given the above definition of a rectangle, the below accessors
 ; all assume that the rectangle is modeled similarly to the
