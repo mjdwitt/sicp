@@ -80,14 +80,14 @@
 ;; Exercise 2.3:
 ;;	Implement a representation for rectangles in a plane.
 
-(define (third-vector leg distance)
+(define (third-vertex leg distance)
   ; Given a leg of a right triangle and the distance from the 
   ; orthagonal vertext to the third vertex, this procedure returns
   ; the value of the unknown third vertex of the triangle.
   (let* ((p (perpendicular-slope-line leg))
 	 (xb (x-point (end-segment leg)))
 	 (yb (y-point (end-segment leg)))
-	 (x (if p ((if (< 0 distance) - +) xb
+	 (x (if p ((if (< 0 distance) + -) xb
 					   (sqrt (/ (square distance)
 						    (+ 1 (square p)))))
 		  xb))
