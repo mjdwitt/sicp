@@ -158,15 +158,9 @@
     (car (rec 1 num)))
   (define (vertex-al num)
     (start-segment (car (rec 1 num))))
-  (define (select vertex-aX)
-    (case number
-      ((1) (vertex-aX 1))
-      ((2) (vertex-aX 2))
-      ((3) (vertex-aX 3))
-      ((4) (vertex-aX 4))
-      (else (display "Invalid number; must be [1-4]."))))
-  (cond ((rect-av? rect) (select vertex-av))
-	((rect-al? rect) (select vertex-al))
+  (cond ((> number 4) (display "Invalid number; must be [1-4]."))
+	((rect-av? rect) (vertex-av number))
+	((rect-al? rect) (vertex-al number))
 	(else (display "Not a rectangle."))))
 
 ; The edges can each be accessed by the same function 
