@@ -136,24 +136,38 @@
 ; all assume that the rectangle is modeled similarly to the
 ; following:
 ;
-;	A		 B
+;	1		 2
 ;	 +--------------+
 ;	 |		|
 ;	 |		|
 ;	 +--------------+
-;	D		 C
+;	4		 3
 ;
 ; where the line AB is the line passed to the original call
 ; to make-rect and the distance between AB and DC is equal
 ; to the width argument.
 
 ; The vertexes can each be accessed by the same function 
-; according to their corresponding letters as drawn above:
-(define (rect-vertex rect letter)
-  (cond ((string-ci=? letter "A") (first rect))
-	((string-ci=? letter "B") (second rect))
-	((string-ci=? letter "C") (third rect))
-	((string-ci=? letter "D") (fourth rect))))
+; according to their corresponding number as drawn above:
+(define (rect-vertex rect number)
+  (define (rec i num)
+    (if (= i num)
+      rect
+      (cdr (rec (+ i 1) num))))
+  (define (vertex-av num)
+    (car (rec 1 num)))
+  (define (vertex-al num)
+    (start-segment (car (rec 1 num))))
+  (define (select vertex-aX)
+    (case number
+      ((1) (vertex-aX 1))
+      ((2) (vertex-aX 2))
+      ((3) (vertex-aX 3))
+      ((4) (vertex-aX 4))
+      (else (display "Invalid number; must be [1-4]."))))
+  (cond ((rect-av? rect) (select vertex-av))
+	((rect-al? rect) (select vertex-al))
+	(else (display "Not a rectangle."))))
 
 ; The edges can each be accessed by the same function 
 ; according to their numbers, where side 1 is the AB segment,
